@@ -124,26 +124,78 @@
     restartSlider();
   }
 
-  const revealItems = [...document.querySelectorAll('.reveal')];
-  if ('IntersectionObserver' in window && !reduceMotion.matches) {
-    const viewport = window.innerHeight;
-    revealItems.forEach((element, index) => {
-      const r = element.getBoundingClientRect();
-      if (r.top > viewport * 0.88 && r.bottom > 0) {
+  // Reveal page elements only as they reach the viewport, each with a small delay.
+  // No-JS, unsupported browsers and reduced-motion users see all content normally.
+  const canAnimate = 'IntersectionObserver' in window && !reduceMotion.matches;
+  if (canAnimate) {
+    // Break up large content groups, so headings, descriptions and details
+    // do not all pop in together. Photos/cards keep their existing reveal class.
+    const groupedContainers = [
+      '.section-intro', '.feature-copy', '.dyno-stats', '.racing-tiers'
+    ];
+    document.querySelectorAll(groupedContainers.join(',')).forEach(el => {
+      el.classList.remove('reveal');
+    });
+
+    const revealTargets = [
+      '.section-intro > .section-index',
+      '.section-intro > h2',
+      '.section-intro > p',
+      '.feature-copy > .minor-heading',
+      '.feature-copy > h3',
+      '.feature-copy > p',
+      '.feature-copy > .features-list > div',
+      '.feature-copy > .text-link',
+      '.dyno-stats > div',
+      '.racing-tiers > .tier',
+      '.quick-services-grid > a',
+      '.partner-ribbon > div',
+      '.brands > span', '.brands > div',
+      '.contact-card > h3',
+      '.contact-card > dl',
+      '.contact-card > .primary-cta',
+      '.contact-card > .outline-cta'
+    ];
+    document.querySelectorAll(revealTargets.join(',')).forEach(el => {
+      el.classList.add('reveal');
+    });
+
+    const allRevealItems = [...document.querySelectorAll('main .reveal')];
+    const viewportHeight = window.innerHeight || document.documentElement.clientHeight;
+    const sectionCount = new Map();
+
+    // Apply off-screen initial states BEFORE enabling the hidden-item rule.
+    // Items already on screen remain visible when refreshing mid-page.
+    allRevealItems.forEach(element => {
+      const bounds = element.getBoundingClientRect();
+      const section = element.closest('section') || document.body;
+      const index = sectionCount.get(section) || 0;
+      sectionCount.set(section, index + 1);
+      const isDyno = section.id === 'dyno';
+      const delay = isDyno ? Math.min(index * 140, 700)
+                           : Math.min((index % 5) * 95, 380);
+      element.style.setProperty('--reveal-delay', delay + 'ms');
+      if (bounds.top > viewportHeight * .76 && bounds.bottom > 0) {
         element.classList.add('reveal-pending');
-        element.style.setProperty('--reveal-delay', (index % 2) * 70 + 'ms');
+      } else {
+        element.classList.add('reveal-visible');
       }
     });
+
     document.documentElement.classList.add('motion-enabled');
-    const io = new IntersectionObserver(entries => {
-      entries.forEach(entry => {
-        if (!entry.isIntersecting) return;
-        entry.target.classList.add('reveal-visible');
-        entry.target.classList.remove('reveal-pending');
-        io.unobserve(entry.target);
-      });
-    }, { threshold: 0.05, rootMargin: '0px 0px -5% 0px' });
-    revealItems.filter(el => el.classList.contains('reveal-pending')).forEach(el => io.observe(el));
+
+    const revealObserver = new IntersectionObserver(entries => {
+      for (const entry of entries) {
+        if (!entry.isIntersecting) continue;
+        const el = entry.target;
+        el.classList.remove('reveal-pending');
+        el.classList.add('reveal-visible');
+        revealObserver.unobserve(el);
+      }
+    }, { threshold: .04, rootMargin: '0px 0px -18% 0px' });
+
+    allRevealItems.filter(el => el.classList.contains('reveal-pending'))
+      .forEach(el => revealObserver.observe(el));
   }
 
   // Animate technical specification numbers once when visible.
@@ -179,10 +231,15 @@
     const numberObserver = new IntersectionObserver(entries => {
       for (const entry of entries) {
         if (!entry.isIntersecting) continue;
-        animateCount(entry.target);
-        numberObserver.unobserve(entry.target);
+        // The figure is now within view: start when its fade-in is underway.
+        const el = entry.target;
+        const stat = el.closest('.reveal');
+        const delay = stat ? Math.min(Number.parseInt(
+          stat.style.getPropertyValue('--reveal-delay'), 10) || 0, 700) : 0;
+        window.setTimeout(() => animateCount(el), delay + 260);
+        numberObserver.unobserve(el);
       }
-    }, { threshold: 0.3 });
+    }, { threshold: 0.6, rootMargin: '0px 0px -14% 0px' });
     counts.forEach(el => numberObserver.observe(el));
   }
 
