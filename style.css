@@ -657,3 +657,48 @@ img{display:block;max-width:100%}
 @media (prefers-reduced-motion: reduce) {
   .header-appointment,.site-header .site-brand { transition: none; }
 }
+
+
+/* Scroll-by-scroll reveal: typography, photos, cards, stats and CTA buttons.
+   Content remains readable whenever JavaScript or IntersectionObserver is off. */
+.reveal { opacity: 1; transform: none; }
+.motion-enabled .reveal.reveal-pending {
+  opacity: 0;
+  transform: translate3d(0, 42px, 0);
+  transition: opacity 840ms cubic-bezier(.22,1,.36,1),
+              transform 940ms cubic-bezier(.22,1,.36,1);
+  transition-delay: var(--reveal-delay,0ms);
+}
+.motion-enabled .reveal.reveal-visible {
+  opacity: 1;
+  transform: translate3d(0,0,0);
+  transition: opacity 840ms cubic-bezier(.22,1,.36,1),
+              transform 940ms cubic-bezier(.22,1,.36,1);
+  transition-delay: var(--reveal-delay,0ms);
+}
+.motion-enabled .dyno-section .reveal.reveal-pending {
+  transform: translate3d(0, 55px, 0);
+}
+.motion-enabled .dyno-section .reveal.reveal-visible {
+  transform: translate3d(0,0,0);
+}
+.dyno-stats > div { min-width: 0; }
+.dyno-stats .count-up { font-variant-numeric: tabular-nums; }
+@media (max-width:760px) {
+  .motion-enabled .reveal.reveal-pending,
+  .motion-enabled .dyno-section .reveal.reveal-pending {
+    transform: translate3d(0,25px,0);
+  }
+  .motion-enabled .reveal.reveal-visible,
+  .motion-enabled .dyno-section .reveal.reveal-visible {
+    transform: none;
+  }
+}
+@media (prefers-reduced-motion: reduce) {
+  .motion-enabled .reveal.reveal-pending,
+  .motion-enabled .reveal.reveal-visible {
+    opacity: 1 !important;
+    transform: none !important;
+    transition: none !important;
+  }
+}
