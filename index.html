@@ -1,61 +1,255 @@
 <!doctype html>
-<html lang="en">
+<html lang="de-CH">
 <head>
-  <meta charset="UTF-8">
+  <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <meta name="theme-color" content="#000000">
-  <meta name="description" content="Luxury car detailing by Detailed. Bespoke detailing, exceptional results.">
-  <title>Detailed — Luxury Car Detailing & Ceramic Coating</title>
-  <link rel="preconnect" href="https://framerusercontent.com">
+  <meta name="theme-color" content="#101112">
+  <meta name="description" content="Real Street Performance GmbH: Service, Tuning, ECU-Kennfeldoptimierung, Leistungsprüfstand, MFK und Racing-Team in Schaffhausen.">
+  <title>Home • Real Street Performance</title>
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&family=Manrope:wght@400;500;600;700;800&display=swap" rel="stylesheet">
-  <link rel="stylesheet" href="style.css?v=scroll-animations-1">
+  <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&family=Oswald:wght@400;500;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="style.css?v=original-street-performance-2">
 </head>
 <body>
-  <header class="header" id="top">
-    <div class="header-inner">
-      <a class="logo" href="index.html" aria-label="Detailed home"><span class="logo-star">✦</span> Detailed</a>
-      <nav class="desktop-nav" aria-label="Main navigation">
-        <a href="#services">Services</a><a href="#about">About</a><a href="#faq">FAQ</a><a href="#contact">Contact</a>
+  <a class="skip-link" href="#service">Zum Inhalt springen</a>
+  <header class="site-header" id="top">
+    <div class="header-inner layout">
+      <a class="site-brand" href="#top" aria-label="Real Street Performance, zurück zum Anfang">
+        <img src="https://street-performance.ch/wp-content/uploads/2021/07/SP-Large.png" onerror="this.style.display='none';this.nextElementSibling.style.display='block';" alt="Real Street Performance Logo">
+        <span class="brand-fallback">REAL <b>STREET PERFORMANCE</b></span>
+      </a>
+      <nav class="main-nav" id="siteNav" aria-label="Hauptnavigation">
+        <a href="#service">Service</a>
+        <a href="#tuning">Tuning</a>
+        <a href="#ecu">ECU</a>
+        <a href="#dyno">Dyno</a>
+        <a href="#mfk">MFK</a>
+        <a href="#goenner">Gönner</a>
+        <a href="#kontakt">Kontakt</a>
       </nav>
-      <a class="nav-quote" href="quote.html">Get a quote</a>
-      <button class="mobile-menu" id="menuToggle" aria-label="Open menu" aria-expanded="false"><span></span><span></span></button>
+      <button class="menu-button" type="button" id="menuButton" aria-controls="siteNav" aria-expanded="false" aria-label="Navigation öffnen">
+        <span></span><span></span><span></span>
+      </button>
     </div>
-    <nav class="mobile-nav" id="mobileNav" aria-label="Mobile navigation"><a href="#services">Services</a><a href="#about">About</a><a href="#faq">FAQ</a><a href="#contact">Contact</a><a href="quote.html">Get a quote ↗</a></nav>
   </header>
   <main>
-    <section class="hero" id="home">
-      <div class="hero-top">
-        <h1>Luxury car detailing</h1>
-        <p>Experience the prestige of a professionally detailed<br class="desktop-break"> car, radiating elegance and refinement at every turn.</p>
-        <a class="inline-link" href="quote.html">Get a quote now <span>↗</span></a>
+    <section class="intro-banner" aria-label="Real Street Performance – Galerie">
+      <div class="slide-track" id="slideTrack">
+        <div class="hero-slide active">
+          <img src="https://street-performance.ch/wp-content/uploads/2022/01/SP-WP_Banner_01.jpg" data-fallback="assets/nissan-gt3.webp" alt="Street Performance – Fahrzeug und Motorsport Banner" fetchpriority="high">
+        </div>
+        <div class="hero-slide">
+          <img src="https://street-performance.ch/wp-content/uploads/2022/01/SP-WP_Banner_02.jpg" data-fallback="assets/nissan-gt3.webp" alt="Street Performance – Performance und Racing">
+        </div>
+        <div class="hero-slide">
+          <img src="https://street-performance.ch/wp-content/uploads/2022/01/SP-WP_Banner_04.jpg" data-fallback="assets/nissan-gt3.webp" alt="Street Performance – Rennsport">
+        </div>
+        <div class="hero-slide">
+          <img src="https://street-performance.ch/wp-content/uploads/2022/01/SP-WP_Banner_03.jpg" data-fallback="assets/nissan-gt3.webp" alt="Street Performance – Fahrzeugtechnik">
+        </div>
       </div>
-      <div class="hero-picture" role="img" aria-label="Nissan GT-R GT3 in Schwarz-Weiß mit Spiegelung"></div>
-    </section>
-    <section class="services section-wrap" id="services">
-      <div class="section-pretitle">Our services</div>
-      <div class="services-heading heading-divider"><h2>Love in every detail</h2><p>Immerse yourself in luxury with our bespoke detailing packages tailored to your car's unique needs.</p></div>
-      <div class="service-grid">
-        <article class="service-card"><div class="service-photo"><img src="https://framerusercontent.com/images/AOZX12RE3oZQC2IdCL5B8Rnfzk.png?width=900" alt="Glossy black luxury cabriolet in a studio" loading="lazy"></div><h3>Entry level detail</h3><p>Treat your luxury car to a thorough hand wash and wax application.</p><a class="mini-link" href="quote.html">Get a quote now ↗</a></article>
-        <article class="service-card"><div class="service-photo"><img src="https://framerusercontent.com/images/yj3vwKYGzpLzLkgNrdkvtPXxkc.png?width=900" alt="Black high performance sports car in a detailing studio" loading="lazy"></div><h3>Maintenance detail</h3><p>Ensure your car's longevity with a periodic exterior protection treatment.</p><a class="mini-link" href="quote.html">Get a quote now ↗</a></article>
-        <article class="service-card"><div class="service-photo"><img src="https://framerusercontent.com/images/N0YrY09hG0VHDZkLF1f36XHzQ4.png?width=900" alt="Mirror-finish detailing of black sports car" loading="lazy"></div><h3>Full detail</h3><p>Pamper your vehicle with a complete treatment, leaving no detail overlooked.</p><a class="mini-link" href="quote.html">Get a quote now ↗</a></article>
+      <div class="intro-shade" aria-hidden="true"></div>
+      <div class="intro-content layout">
+        <span class="eyebrow"><span class="eyebrow-line"></span> REAL STREET PERFORMANCE GMBH</span>
+        <h1>PASSION.<br><em>PERFORMANCE.</em></h1>
+        <p>Tuning, Fahrzeugtechnik und Motorsport aus Schaffhausen.</p>
+        <a class="primary-cta" href="#service">Unsere Leistungen <span aria-hidden="true">↗</span></a>
+      </div>
+      <div class="carousel-bottom layout">
+        <div class="slide-pagination" aria-label="Banner auswählen">
+          <button type="button" class="active" data-slide="0" aria-label="Bild 1 anzeigen" aria-current="true"></button>
+          <button type="button" data-slide="1" aria-label="Bild 2 anzeigen"></button>
+          <button type="button" data-slide="2" aria-label="Bild 3 anzeigen"></button>
+          <button type="button" data-slide="3" aria-label="Bild 4 anzeigen"></button>
+        </div>
+        <div class="carousel-controls">
+          <button type="button" id="previousSlide" aria-label="Vorheriges Bild">←</button>
+          <button type="button" id="nextSlide" aria-label="Nächstes Bild">→</button>
+        </div>
       </div>
     </section>
-    <section class="reel section-wrap" aria-label="Showreel"><div class="reel-image"><img src="https://framerusercontent.com/images/YqwyFLZtJ2GGccGuEs12ab0748.png?width=1300" alt="Black luxury performance car in a dark detailing studio" loading="lazy"><button class="play-button" id="playReel" aria-label="Play showreel"><span>▶</span><small>Play showreel</small></button></div></section>
-    <section class="numbers section-wrap" aria-label="Unsere Ergebnisse"><div class="stat"><strong><span class="counter" data-count="2400">2,400</span>+</strong><small>Autos</small></div><div class="stat"><strong><span class="counter" data-count="12">12</span>+</strong><small>Jahre</small></div><div class="stat"><strong><span class="counter" data-count="4.98" data-decimals="2">4.98</span>*</strong><small>Bewertung</small></div><div class="stat"><strong><span class="counter" data-count="100">100</span>%</strong><small>Garantie</small></div></section>
-    <section class="about section-wrap" id="about"><div class="about-visual"><h2>We will take good<br>care of your car</h2><img src="https://framerusercontent.com/images/YqwyFLZtJ2GGccGuEs12ab0748.png?width=1050" alt="Professionally detailed black sports car" loading="lazy"></div><div class="about-right"><div class="reason"><h3><span>✧</span> Precise work</h3><p>We uphold the highest standards of professionalism when servicing your vehicles.</p></div><div class="reason"><h3><span>✧</span> Premium Products and Services</h3><p>Ensure your car's longevity with a periodic exterior protection treatment.</p></div><div class="reason"><h3><span>✧</span> High-Level Security and Privacy</h3><p>We understand the importance of privacy and security for our clientele.</p></div><a class="mini-link" href="quote.html">Get a quote now ↗</a></div></section>
-    <section class="faq section-wrap" id="faq"><h2>FAQs</h2><div class="faq-items">
-      <details><summary>How long does a full detail take?<span>⌄</span></summary><p>Most full details take around one to two days, depending on the condition of your vehicle and the package you choose.</p></details>
-      <details><summary>Do you offer mobile detailing or collection?<span>⌄</span></summary><p>We can discuss collection and mobile options when preparing your quote.</p></details>
-      <details><summary>How long does a ceramic coating last?<span>⌄</span></summary><p>Longevity depends on the coating, driving conditions and care routine. We'll recommend the right option for your vehicle.</p></details>
-      <details><summary>Is my car insured while it's with you?<span>⌄</span></summary><p>Contact us for details about how your vehicle is protected during the service.</p></details>
-      <details><summary>What areas do you cover?<span>⌄</span></summary><p>Send us your location when requesting a quote and we'll confirm availability.</p></details>
-    </div></section>
-    <section class="contact-banner section-wrap" id="contact"><div class="banner-image"><div class="banner-copy"><h2>Book your luxury<br>car detailing today.</h2><p>Click the link below. Fill out the details and we'll get back to you in less than 24 hours.</p><a class="mini-link" href="quote.html">Get a quote now ↗</a></div></div></section>
+
+    <nav class="quick-services" aria-label="Direkt zu unseren Leistungen">
+      <div class="layout quick-services-grid">
+        <a href="#service"><span>01</span><strong>Service</strong><i>↗</i></a>
+        <a href="#tuning"><span>02</span><strong>Tuning</strong><i>↗</i></a>
+        <a href="#ecu"><span>03</span><strong>ECU</strong><i>↗</i></a>
+        <a href="#dyno"><span>04</span><strong>Dyno</strong><i>↗</i></a>
+        <a href="#mfk"><span>05</span><strong>MFK</strong><i>↗</i></a>
+      </div>
+    </nav>
+
+    <section class="detail-section" id="service">
+      <div class="layout">
+        <div class="section-intro reveal">
+          <span class="section-index">01 / WERKSTATT</span>
+          <h2>Service &amp; <em>Reparaturen</em></h2>
+          <p>Inspektion, Unterhalt und Reparaturen für unterschiedliche Fahrzeugmarken – mit hochwertigen Betriebsstoffen und passenden Ersatzteilen.</p>
+        </div>
+        <div class="feature-two-col">
+          <figure class="feature-photo reveal">
+            <img src="https://street-performance.ch/wp-content/uploads/2021/07/Oelservice.jpg" data-fallback="https://framerusercontent.com/images/AOZX12RE3oZQC2IdCL5B8Rnfzk.png?width=1000" alt="Service und Ölwechsel" loading="lazy">
+          </figure>
+          <div class="feature-copy reveal">
+            <span class="minor-heading">WERTERHALT UND SICHERHEIT</span>
+            <h3>Ihr Fahrzeug.<br>Unsere Sorgfalt.</h3>
+            <p>Ein gepflegtes Fahrzeug überzeugt nicht nur durch Leistung, sondern auch durch Zuverlässigkeit. Von der Motorwartung bis zu sicherheitsrelevanten Bauteilen kümmern wir uns um die Technik.</p>
+            <div class="features-list">
+              <div><span class="feature-symbol">01</span><div><h4>Motor &amp; Ölservice</h4><p>Wartungsarbeiten, Filterwechsel und Schutz des Motors.</p></div></div>
+              <div><span class="feature-symbol">02</span><div><h4>Bremsen</h4><p>Kontrolle und Instandsetzung für ein sicheres Fahrgefühl.</p></div></div>
+              <div><span class="feature-symbol">03</span><div><h4>Fahrwerk</h4><p>Abstimmung, Kontrolle und Komponenten für ein stabiles Handling.</p></div></div>
+            </div>
+            <a class="text-link" href="#kontakt">Jetzt Service anfragen <span>↗</span></a>
+          </div>
+        </div>
+        <div class="partner-ribbon reveal">
+          <div><span>PREMIUM PARTNER</span><h3>AMSOIL</h3><p>Performance-Öle und Schutz für anspruchsvolle Einsatzbereiche.</p></div>
+          <img src="https://street-performance.ch/wp-content/uploads/2021/07/amsoil-logo.png" alt="AMSOIL Partnerlogo" onerror="this.style.display='none'" loading="lazy">
+        </div>
+      </div>
+    </section>
+
+    <section class="detail-section alt-section" id="tuning">
+      <div class="layout">
+        <div class="section-intro reveal">
+          <span class="section-index">02 / PERFORMANCE</span>
+          <h2>Tuning</h2>
+          <p>Leistung entsteht im Zusammenspiel aller Komponenten. Wir beraten individuell und achten darauf, dass Umbauten technisch und fahrdynamisch zusammenpassen.</p>
+        </div>
+        <div class="feature-two-col reverse">
+          <figure class="feature-photo reveal">
+            <img src="https://street-performance.ch/wp-content/uploads/2021/07/Tuning.jpg" data-fallback="https://framerusercontent.com/images/yj3vwKYGzpLzLkgNrdkvtPXxkc.png?width=1000" alt="Performance-Tuning an einem Sportfahrzeug" loading="lazy">
+          </figure>
+          <div class="feature-copy reveal">
+            <span class="minor-heading">INDIVIDUELL ABGESTIMMT</span>
+            <h3>Mehr Leistung.<br>Ein Konzept.</h3>
+            <p>Für ein stimmiges Setup betrachten wir nicht nur die Motorleistung, sondern ebenso Abgasanlage, Getriebe und das Zusammenspiel aller verbauten Teile.</p>
+            <div class="features-list">
+              <div><span class="feature-symbol">01</span><div><h4>Motorentechnik</h4><p>Passende Hardware und Konzepte für ambitionierte Projekte.</p></div></div>
+              <div><span class="feature-symbol">02</span><div><h4>Abgasanlagen</h4><p>Performance, Klang und Charakter abgestimmt auf das Fahrzeug.</p></div></div>
+              <div><span class="feature-symbol">03</span><div><h4>Getriebe</h4><p>Optimierung von Schaltverhalten und Zuverlässigkeit.</p></div></div>
+            </div>
+            <a class="text-link" href="#kontakt">Tuning-Projekt besprechen <span>↗</span></a>
+          </div>
+        </div>
+        <div class="brands reveal" aria-label="Marken und Partner"><span>UNSERE PARTNER UND MARKEN</span><div><b>LINNEY ENGINEERING</b><b>TITAN MOTORSPORTS</b><b>AMS ALPHA</b><b>ROHANA WHEELS</b><b>GT1R</b></div></div>
+      </div>
+    </section>
+
+    <section class="detail-section" id="ecu">
+      <div class="layout">
+        <div class="section-intro reveal">
+          <span class="section-index">03 / SOFTWARE</span>
+          <h2>ECU <em>Kennfeldoptimierung</em></h2>
+          <p>Individuelle Softwareanpassungen am Motorsteuergerät können das Ansprechverhalten und die Leistungsentfaltung eines Fahrzeugs optimieren.</p>
+        </div>
+        <div class="feature-two-col">
+          <figure class="feature-photo reveal">
+            <img src="https://street-performance.ch/wp-content/uploads/2021/08/53873422_2009996425714336_87806883918564-1.jpg" data-fallback="https://framerusercontent.com/images/N0YrY09hG0VHDZkLF1f36XHzQ4.png?width=1000" alt="Leistungsoptimierung und ECU-Abstimmung" loading="lazy">
+          </figure>
+          <div class="feature-copy reveal">
+            <span class="minor-heading">PRÄZISION IN DER SOFTWARE</span>
+            <h3>Das volle Potenzial.<br>Sauber abgestimmt.</h3>
+            <p>Bei einer ECU-Kennfeldoptimierung werden Steuerdaten individuell angepasst. Wir stimmen Lösungen auf das Fahrzeug und die eingesetzten Komponenten ab.</p>
+            <p>Auch für spezielle Motorsport-Projekte begleiten wir die Abstimmung der Antriebselektronik.</p>
+            <a class="text-link" href="#kontakt">ECU-Anfrage senden <span>↗</span></a>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="dyno-section" id="dyno">
+      <div class="dyno-image">
+        <img src="https://street-performance.ch/wp-content/uploads/2021/07/Leistungsmessung.jpg" data-fallback="https://framerusercontent.com/images/YqwyFLZtJ2GGccGuEs12ab0748.png?width=1400" alt="Fahrzeug-Leistungsmessung auf dem Prüfstand" loading="lazy">
+      </div>
+      <div class="dyno-shade"></div>
+      <div class="layout dyno-content">
+        <span class="section-index reveal">04 / MAINLINE-LEISTUNGSPRÜFSTAND</span>
+        <h2 class="reveal">Leistungs<em>messung.</em></h2>
+        <p class="reveal">Messungen und Abstimmungen auf unserem Mainline-Prüfstand bieten eine fundierte Grundlage für Entwicklung, Diagnose und gezielte Optimierung.</p>
+        <div class="dyno-stats reveal">
+          <div><strong><span class="count-up" data-target="3000" data-format="grouped">3'000</span><small> PS</small></strong><span>Max. Messbereich</span></div>
+          <div><strong><span class="count-up" data-target="500">500</span><small> km/h</small></strong><span>Max. Geschwindigkeit</span></div>
+        </div>
+        <a href="#kontakt" class="primary-cta reveal">Leistungsmessung anfragen <span>↗</span></a>
+      </div>
+    </section>
+
+    <section class="detail-section" id="mfk">
+      <div class="layout">
+        <div class="section-intro reveal">
+          <span class="section-index">05 / ZULASSUNG</span>
+          <h2>Motorfahrzeug<em>kontrolle</em> (MFK)</h2>
+          <p>Wir unterstützen bei der periodischen Prüfung und bei Fragen rund um technische Modifikationen und die dazugehörigen Fahrzeugdokumente.</p>
+        </div>
+        <div class="feature-two-col reverse">
+          <figure class="feature-photo reveal">
+            <img src="https://street-performance.ch/wp-content/uploads/2021/08/Fahrzeugpruefung_01.1593443130097.jpeg" data-fallback="https://framerusercontent.com/images/AOZX12RE3oZQC2IdCL5B8Rnfzk.png?width=1000" alt="Motorfahrzeugkontrolle und technische Prüfung" loading="lazy">
+          </figure>
+          <div class="feature-copy reveal">
+            <span class="minor-heading">GUT VORBEREITET</span>
+            <h3>Technik, die auch<br>rechtlich passt.</h3>
+            <p>Bei Umbauten gehören die richtigen Unterlagen ebenso dazu wie die technische Ausführung. Wir beraten bei Fragen zur Zulassungsfähigkeit und helfen bei der Vorbereitung der Fahrzeugkontrolle.</p>
+            <a class="text-link" href="#kontakt">MFK-Termin anfragen <span>↗</span></a>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="racing-section" id="goenner">
+      <div class="layout racing-grid">
+        <div class="racing-copy">
+          <span class="section-index reveal">06 / RACING TEAM</span>
+          <h2 class="reveal">Support the<br><em>Racing Team.</em></h2>
+          <p class="reveal">Motorsport lebt von Engagement. Mit einem Gönnerbeitrag unterstützt du das Racing-Team bei Rennveranstaltungen, Fahrzeugunterhalt und Saisonvorbereitung.</p>
+          <a class="primary-cta reveal" href="https://www.spracingteam.ch/" rel="noopener noreferrer" target="_blank">Gönner werden <span>↗</span></a>
+        </div>
+        <div class="racing-tiers reveal">
+          <div class="tier"><span>GÖNNERSTUFE 01</span><h3>Junior Racer</h3><strong>CHF 50.–</strong><p>Für alle, die das Team auf seinem Weg begleiten möchten.</p></div>
+          <div class="tier"><span>GÖNNERSTUFE 02</span><h3>Pro Racer</h3><strong>CHF 150.–</strong><p>Ein grösserer Beitrag für die kommende Rennsaison.</p></div>
+        </div>
+      </div>
+    </section>
+
+    <section class="contact-section" id="kontakt">
+      <div class="layout">
+        <div class="section-intro reveal">
+          <span class="section-index">07 / KONTAKT</span>
+          <h2>Real Street <em>Performance</em> GmbH</h2>
+          <p>Fragen zu Tuning, Service oder einem individuellen Projekt? Wir freuen uns auf deine Kontaktaufnahme.</p>
+        </div>
+        <div class="contact-grid">
+          <div class="contact-card reveal">
+            <h3>Kontakt</h3>
+            <dl>
+              <div><dt>Adresse</dt><dd>Ebnatstrasse 162<br>8207 Schaffhausen, Schweiz</dd></div>
+              <div><dt>Telefon</dt><dd><a href="tel:+41525037474">+41 (0)52 503 74 74</a></dd></div>
+              <div><dt>E-Mail</dt><dd><a href="mailto:info@street-performance.ch">info@street-performance.ch</a></dd></div>
+            </dl>
+            <a class="primary-cta" href="mailto:info@street-performance.ch?subject=Anfrage%20Street%20Performance">E-Mail schreiben <span>↗</span></a>
+          </div>
+          <div class="contact-card reveal">
+            <h3>Öffnungszeiten</h3>
+            <dl>
+              <div><dt>Montag – Freitag</dt><dd>08:00 – 12:00<br>13:30 – 18:00</dd></div>
+              <div><dt>Samstag</dt><dd>Nach Vereinbarung</dd></div>
+              <div><dt>Sonntag</dt><dd>Geschlossen</dd></div>
+            </dl>
+            <a class="outline-cta" href="https://www.google.com/maps/search/?api=1&query=Ebnatstrasse+162+8207+Schaffhausen" target="_blank" rel="noopener noreferrer">Route anzeigen <span>↗</span></a>
+          </div>
+        </div>
+      </div>
+    </section>
   </main>
-  <footer class="footer section-wrap"><div class="footer-grid"><div class="footer-brand"><a class="logo" href="index.html"><span class="logo-star">✦</span> Detailed</a><p>Experience the prestige of a professionally detailed car, radiating elegance and refinement at every turn.</p></div><div><h4>Website</h4><a href="#services">Services</a><a href="#about">About</a><a href="#faq">FAQ</a><a href="#contact">Contact</a></div><div><h4>Contact</h4><a href="quote.html">Get a quote</a><a href="mailto:example@example.com">Email us</a></div><div><h4>Social Media</h4><a href="https://facebook.com" target="_blank" rel="noopener">Facebook</a><a href="https://instagram.com" target="_blank" rel="noopener">Instagram</a><a href="https://x.com" target="_blank" rel="noopener">Twitter</a><a href="https://youtube.com" target="_blank" rel="noopener">Youtube</a></div></div><div class="footer-bottom"><span>© Detailed Template</span><span>Create by <a href="https://sebadam.supply/" target="_blank" rel="noopener">Sebadam</a> · Independent HTML reconstruction</span></div></footer>
-  <dialog id="videoDialog" class="video-dialog"><button id="closeVideo" aria-label="Close video" class="video-close">×</button><div class="video-frame"><p>Showreel</p><img src="https://framerusercontent.com/images/YqwyFLZtJ2GGccGuEs12ab0748.png?width=1300" alt="Luxury car showreel preview"><p class="reel-notice">No video is bundled with this template. Replace this image with your own film.</p></div></dialog>
-  <script src="script.js?v=scroll-animations-1"></script>
+
+  <footer class="site-footer">
+    <div class="layout footer-main">
+      <a class="site-brand" href="#top"><img src="https://street-performance.ch/wp-content/uploads/2021/07/SP-Small.png" alt="Real Street Performance" onerror="this.style.display='none';this.nextElementSibling.style.display='block'"><span class="brand-fallback">STREET PERFORMANCE</span></a>
+      <nav aria-label="Footer-Navigation"><a href="#service">Service</a><a href="#tuning">Tuning</a><a href="#ecu">ECU</a><a href="#dyno">Dyno</a><a href="#mfk">MFK</a><a href="#kontakt">Kontakt</a></nav>
+    </div>
+    <div class="layout footer-bottom"><span>© Real Street Performance GmbH. Alle Rechte vorbehalten.</span><a href="#top">Nach oben ↑</a></div>
+  </footer>
+  <script src="script.js?v=original-street-performance-2" defer></script>
 </body>
 </html>
