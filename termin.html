@@ -1,0 +1,277 @@
+<!doctype html>
+<html lang="de-CH">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="theme-color" content="#111314">
+  <meta name="description" content="Termin und Anfrage bei Street Performance: Service, Tuning, ECU und Leistungsprüfstand in Schaffhausen.">
+  <title>Termin vereinbaren | Street Performance</title>
+  <link rel="icon" href="assets/sp-shield-hd.png" type="image/png">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700;800&family=Manrope:wght@500;600;700;800&display=swap" rel="stylesheet">
+  <style>
+    :root {
+      --white: #fafafa;
+      --muted: #c5c6c6;
+      --border: rgba(255,255,255,.13);
+      --red: #da1f32;
+      --ease: cubic-bezier(.22,1,.36,1);
+      font-family: "DM Sans", Arial, sans-serif;
+      color-scheme: dark;
+    }
+    *,*::before,*::after{box-sizing:border-box}
+    html{min-height:100%;scroll-behavior:smooth}
+    body{min-height:100vh;margin:0;background:#0c1010;color:var(--white);font:400 16px/1.55 "DM Sans",Arial,sans-serif;-webkit-font-smoothing:antialiased}
+    a{color:inherit;text-decoration:none}
+    button,input,textarea{font:inherit}
+    button{cursor:pointer}
+    a:focus-visible,button:focus-visible,input:focus-visible,textarea:focus-visible{outline:2px solid #fff;outline-offset:3px}
+    ::selection{background:#e53246;color:#fff}
+    .topbar{height:86px;background:rgba(7,8,9,.95);border-bottom:1px solid rgba(255,255,255,.06)}
+    .top-inner{height:100%;width:min(1690px,calc(100% - 108px));margin:auto;display:flex;align-items:center;justify-content:space-between;gap:24px}
+    .brand{display:inline-flex;align-items:center;gap:13px;min-width:0}
+    .brand img{display:block;width:60px;height:67px;object-fit:contain}
+    .brand-name{display:flex;flex-direction:column;gap:0;color:#fff;line-height:1}
+    .brand-name strong{font:800 27px/1.1 "Manrope",Arial,sans-serif;letter-spacing:-.055em}
+    .brand-name small{font:600 9px/1.6 "DM Sans",Arial,sans-serif;letter-spacing:.25em;color:#c6c6c6;margin-top:1px}
+    .back-link{display:inline-flex;align-items:center;justify-content:center;gap:11px;background:#fff;color:#08090b;border-radius:100px;min-height:52px;padding:0 27px;font-weight:800;font-size:13px;white-space:nowrap;transition:transform .35s var(--ease),background .3s ease}
+    .back-link:hover{background:#eeeeef;transform:translateY(-2px)}
+    .back-link span{font-size:18px;line-height:1;font-weight:500}
+    .appointment-page{
+      min-height:calc(100vh - 86px);
+      position:relative;
+      isolation:isolate;
+      display:flex;
+      align-items:center;
+      overflow:hidden;
+      padding:clamp(54px,6vw,94px) 0;
+      background:#111719;
+    }
+    .appointment-page::before{
+      content:"";position:absolute;inset:0;z-index:-3;
+      background-image:url("https://commons.wikimedia.org/wiki/Special:FilePath/Aerial_View_of_Stein_am_Rhein_15.07.2008_16-39-44.JPG?width=1600");
+      background-size:cover;
+      background-position:center 48%;
+      filter:brightness(.57) saturate(.56);
+    }
+    .appointment-page::after{
+      content:"";position:absolute;inset:0;z-index:-2;
+      background:linear-gradient(90deg,rgba(0,0,0,.72) 0%,rgba(0,0,0,.39) 54%,rgba(0,0,0,.55) 100%),
+                 linear-gradient(180deg,rgba(6,8,10,.27) 0%,rgba(0,0,0,.13) 28%,rgba(0,0,0,.86) 100%);
+    }
+    .appointment-layout{
+      width:min(1700px,calc(100% - 108px));
+      margin:auto;
+      display:grid;
+      grid-template-columns:minmax(0,.92fr) minmax(0,1.08fr);
+      gap:clamp(50px,6vw,124px);
+      align-items:center;
+    }
+    .left-content{padding:15px 0 18px}
+    .eyebrow{
+      display:inline-flex;align-items:center;gap:12px;
+      font-size:12px;font-weight:800;letter-spacing:.035em;
+      border:1px solid rgba(255,255,255,.28);
+      border-radius:100px;padding:9px 16px;color:#fff;
+      background:rgba(13,16,17,.26);
+      backdrop-filter:blur(9px);
+      -webkit-backdrop-filter:blur(9px);
+      margin-bottom:35px;
+    }
+    .left-content h1{
+      font:800 clamp(66px,7.4vw,133px)/.95 "Manrope",Arial,sans-serif;
+      letter-spacing:-.08em;
+      text-transform:uppercase;
+      color:#fff;
+      margin:0 0 36px;
+      text-wrap:balance;
+    }
+    .left-content h1 span{display:block}
+    .contact-details{display:grid;gap:13px;font-size:17px;line-height:1.75;color:#f4f4f4}
+    .contact-details a{transition:color .25s ease}
+    .contact-details a:hover{color:#fff;text-decoration:underline;text-underline-offset:4px}
+    .contact-details .address{font-style:normal}
+    .contact-details .address span{white-space:nowrap}
+    .contact-details strong{font-weight:600}
+    .form-panel{
+      background:linear-gradient(155deg,rgba(48,51,52,.94),rgba(25,27,28,.96));
+      border:1px solid rgba(255,255,255,.15);
+      border-radius:28px;
+      padding:clamp(28px,3vw,52px);
+      box-shadow:0 18px 75px rgba(0,0,0,.39);
+      -webkit-backdrop-filter:blur(19px);
+      backdrop-filter:blur(19px);
+    }
+    .contact-form{display:grid;gap:21px}
+    .form-grid{display:grid;grid-template-columns:1fr 1fr;gap:20px}
+    .field{min-width:0;display:flex;flex-direction:column;gap:10px}
+    .field label{font-weight:750;font-size:16px;line-height:1.3;color:#ededee;letter-spacing:-.02em}
+    .field input,.field textarea{
+      border:1px solid rgba(255,255,255,.15);
+      background:rgba(8,10,11,.64);
+      color:#fff;
+      width:100%;
+      border-radius:16px;
+      padding:17px 20px;
+      font-size:15px;
+      line-height:1.5;
+      outline:none;
+      transition:border-color .25s ease,box-shadow .25s ease,background .25s ease;
+    }
+    .field input{min-height:65px}
+    .field textarea{min-height:235px;resize:vertical}
+    .field input:focus,.field textarea:focus{
+      border-color:rgba(255,255,255,.64);
+      box-shadow:0 0 0 3px rgba(255,255,255,.065);
+      background:rgba(8,10,11,.8);
+    }
+    .field textarea::placeholder{color:#86888b}
+    .field input::placeholder{color:#929494}
+    .send-button{
+      border:0;background:var(--red);color:white;
+      min-height:74px;border-radius:100px;
+      font-weight:800;font-size:17px;
+      transition:background .28s ease,transform .3s var(--ease),box-shadow .3s ease;
+      margin-top:1px;
+    }
+    .send-button:hover{
+      background:#ef293d;transform:translateY(-2px);
+      box-shadow:0 10px 30px rgba(218,31,50,.2);
+    }
+    .form-notice{margin:-8px 2px 0;color:#c4c6c7;font-size:11px;line-height:1.65}
+    .form-feedback{font-size:13px;color:#fff;min-height:0;line-height:1.6}
+    .photo-credit{
+      position:absolute;right:16px;bottom:9px;
+      color:rgba(255,255,255,.5);font-size:9px;
+      text-shadow:0 1px 3px black;
+    }
+    .photo-credit a{text-decoration:underline;text-underline-offset:2px}
+    @media(max-width:1050px){
+      .top-inner,.appointment-layout{width:calc(100% - 64px)}
+      .appointment-layout{gap:42px;grid-template-columns:minmax(0,.85fr) minmax(0,1.15fr)}
+      .left-content h1{font-size:clamp(54px,7.2vw,87px)}
+      .form-panel{padding:30px}
+      .field textarea{min-height:200px}
+    }
+    @media(max-width:760px){
+      .topbar{height:74px}
+      .top-inner,.appointment-layout{width:calc(100% - 36px)}
+      .brand{gap:7px}
+      .brand img{width:48px;height:57px}
+      .brand-name strong{font-size:20px}
+      .brand-name small{font-size:7px;letter-spacing:.16em}
+      .back-link{min-height:42px;padding:0 14px;font-size:11px;gap:5px}
+      .back-link span{font-size:16px}
+      .appointment-page{padding:54px 0 65px;min-height:calc(100vh - 74px)}
+      .appointment-layout{grid-template-columns:1fr;gap:32px}
+      .left-content{padding:0}
+      .left-content h1{font-size:clamp(59px,13vw,93px);margin-bottom:27px}
+      .eyebrow{font-size:10px;margin-bottom:23px}
+      .contact-details{font-size:14px;gap:7px}
+      .form-panel{border-radius:23px;padding:25px 21px}
+      .field label{font-size:14px}
+      .field input{min-height:55px}
+      .field textarea{min-height:180px}
+      .send-button{min-height:61px;font-size:15px}
+      .photo-credit{position:relative;display:block;text-align:center;margin-top:26px;padding:0 12px;right:auto;bottom:auto}
+    }
+    @media(max-width:480px){
+      .brand-name small{display:none}
+      .brand-name strong{font-size:17px}
+      .form-grid{grid-template-columns:1fr;gap:20px}
+      .contact-form{gap:20px}
+      .field input{min-height:53px}
+      .back-link{font-size:10px;padding:0 12px}
+      .left-content h1{font-size:clamp(51px,12.7vw,68px)}
+      .form-panel{padding:22px 17px}
+    }
+    @media(prefers-reduced-motion:reduce){
+      html{scroll-behavior:auto}
+      .back-link,.field input,.field textarea,.send-button{transition:none}
+    }
+  </style>
+</head>
+<body>
+  <header class="topbar">
+    <div class="top-inner">
+      <a class="brand" href="index.html" aria-label="Zur Street Performance Startseite">
+        <img src="assets/sp-shield-hd.png" alt="" width="260" height="260">
+        <span class="brand-name"><strong>STREET PERFORMANCE</strong><small>REAL STREET PERFORMANCE GMBH</small></span>
+      </a>
+      <a class="back-link" href="index.html">Zurück zur Website <span aria-hidden="true">→</span></a>
+    </div>
+  </header>
+
+  <main class="appointment-page">
+    <div class="appointment-layout">
+      <section class="left-content" aria-labelledby="anfrage-title">
+        <div class="eyebrow">KONTAKT &amp; TERMIN</div>
+        <h1 id="anfrage-title"><span>ANFRAGE</span><span>SENDEN</span></h1>
+        <div class="contact-details">
+          <div>Telefon: <a href="tel:+41525037474">+41 (0)52 503 74 74</a></div>
+          <div>E-Mail: <a href="mailto:info@street-performance.ch">info@street-performance.ch</a></div>
+          <address class="address">Ebnatstrasse 162, CH-8207 Schaffhausen</address>
+        </div>
+      </section>
+
+      <section class="form-panel" aria-label="Terminanfrage senden">
+        <form id="appointmentForm" class="contact-form" novalidate="false">
+          <div class="form-grid">
+            <div class="field">
+              <label for="firstName">Vorname</label>
+              <input type="text" id="firstName" name="firstName" autocomplete="given-name" required maxlength="80">
+            </div>
+            <div class="field">
+              <label for="lastName">Nachname</label>
+              <input type="text" id="lastName" name="lastName" autocomplete="family-name" required maxlength="80">
+            </div>
+          </div>
+          <div class="field">
+            <label for="email">E-Mail</label>
+            <input type="email" id="email" name="email" autocomplete="email" required maxlength="200">
+          </div>
+          <div class="field">
+            <label for="message">Nachricht</label>
+            <textarea id="message" name="message" placeholder="Ich interessiere mich für einen Termin / eine Beratung ..." required maxlength="5000"></textarea>
+          </div>
+          <button type="submit" class="send-button">Nachricht senden</button>
+          <p class="form-notice">Beim Absenden öffnet sich dein E-Mail-Programm mit der vorbereiteten Anfrage. Bitte bestätige den Versand dort.</p>
+          <p id="formFeedback" class="form-feedback" role="status" aria-live="polite"></p>
+        </form>
+      </section>
+    </div>
+    <div class="photo-credit">Hintergrundfoto: Hansueli Krapf / <a href="https://commons.wikimedia.org/wiki/File:Aerial_View_of_Stein_am_Rhein_15.07.2008_16-39-44.JPG" target="_blank" rel="noopener noreferrer">Wikimedia Commons</a> (CC BY-SA 3.0)</div>
+  </main>
+
+  <script>
+    (() => {
+      const form = document.getElementById('appointmentForm');
+      const feedback = document.getElementById('formFeedback');
+      if (!form || !feedback) return;
+      form.addEventListener('submit', (event) => {
+        event.preventDefault();
+        if (!form.checkValidity()) {
+          form.reportValidity();
+          return;
+        }
+        const first = document.getElementById('firstName').value.trim();
+        const last = document.getElementById('lastName').value.trim();
+        const email = document.getElementById('email').value.trim();
+        const message = document.getElementById('message').value.trim();
+        if (!first || !last || !email || !message) {
+          feedback.textContent = 'Bitte fülle alle Felder aus.';
+          return;
+        }
+        const subject = 'Terminanfrage Street Performance – ' + first + ' ' + last;
+        const body = 'Vorname: ' + first + '\nNachname: ' + last
+          + '\nE-Mail: ' + email + '\n\nNachricht:\n' + message;
+        const url = 'mailto:info@street-performance.ch?subject='
+          + encodeURIComponent(subject) + '&body=' + encodeURIComponent(body);
+        feedback.textContent = 'Dein E-Mail-Programm wird geöffnet. Bitte sende die vorbereitete Nachricht dort ab.';
+        window.location.href = url;
+      });
+    })();
+  </script>
+</body>
+</html>
