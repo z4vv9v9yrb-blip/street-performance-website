@@ -6,23 +6,48 @@
   const nav = document.getElementById('siteNav');
 
   if (menu && nav) {
-    menu.addEventListener('click', () => {
-      const open = nav.classList.toggle('open');
+    const mobileViewport = window.matchMedia('(max-width: 760px)');
+
+    const setMenuOpen = (requestedOpen, restoreFocus = false) => {
+      const open = Boolean(requestedOpen && mobileViewport.matches);
+      nav.classList.toggle('open', open);
+      menu.classList.toggle('is-open', open);
       menu.setAttribute('aria-expanded', String(open));
       menu.setAttribute('aria-label', open ? 'Navigation schliessen' : 'Navigation öffnen');
-    });
+
+      // Prevent keyboard focus from entering the visually closed menu.
+      // Desktop navigation must remain accessible.
+      nav.inert = mobileViewport.matches && !open;
+      if (!open && restoreFocus && mobileViewport.matches) menu.focus();
+    };
+
+    setMenuOpen(false);
+    menu.addEventListener('click', () => setMenuOpen(!nav.classList.contains('open')));
+
     nav.querySelectorAll('a').forEach(link => {
-      link.addEventListener('click', () => {
-        nav.classList.remove('open');
-        menu.setAttribute('aria-expanded', 'false');
-      });
+      link.addEventListener('click', () => setMenuOpen(false));
     });
-    document.addEventListener('keydown', e => {
-      if (e.key === 'Escape') {
-        nav.classList.remove('open');
-        menu.setAttribute('aria-expanded', 'false');
+
+    document.addEventListener('keydown', event => {
+      if (event.key === 'Escape' && nav.classList.contains('open')) {
+        setMenuOpen(false, true);
       }
     });
+
+    document.addEventListener('pointerdown', event => {
+      if (nav.classList.contains('open') &&
+          !nav.contains(event.target) &&
+          !menu.contains(event.target)) {
+        setMenuOpen(false);
+      }
+    });
+
+    // Keep the desktop menu visible after rotating the device or resizing.
+    if (mobileViewport.addEventListener) {
+      mobileViewport.addEventListener('change', () => setMenuOpen(false));
+    } else {
+      mobileViewport.addListener(() => setMenuOpen(false));
+    }
   }
 
   // The original WordPress images are loaded from the source domain.
