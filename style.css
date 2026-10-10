@@ -418,3 +418,242 @@ img{display:block;max-width:100%}
     width:56px;height:56px;min-width:56px;max-width:56px;
   }
 }
+
+
+/* Premium Street Performance header — based on the approved reference image.
+   Three aligned zones: logo/wordmark | centered nav | booking CTA. */
+.site-header {
+  height: 106px;
+  background:
+    radial-gradient(ellipse 45% 180% at 100% 50%, rgba(99,39,42,.27), transparent 80%),
+    linear-gradient(100deg, #101214 0%, #222629 42%, #393a3d 74%, #292527 100%);
+  border-bottom: 1px solid rgba(255,255,255,.12);
+  -webkit-backdrop-filter: blur(18px);
+  backdrop-filter: blur(18px);
+}
+.site-header::before {
+  content: "";
+  position: absolute;
+  width: min(390px, 31vw);
+  height: 3px;
+  top: 8px;
+  left: clamp(18px, 2.9vw, 52px);
+  background: linear-gradient(90deg,#f02238,#de2031);
+  pointer-events: none;
+  z-index: 1;
+}
+.site-header .header-inner.layout {
+  width: min(1780px, calc(100% - 70px));
+  height: 100%;
+  display: grid;
+  grid-template-columns: minmax(225px,1fr) auto minmax(175px,1fr);
+  gap: clamp(12px,1.75vw,30px);
+  align-items: center;
+}
+.site-header .site-brand {
+  display: inline-flex;
+  flex: 0 1 auto;
+  width: max-content;
+  max-width: 420px;
+  min-width: 0;
+  gap: 13px;
+  align-items: center;
+  justify-self: start;
+  white-space: nowrap;
+  transition: opacity .3s ease;
+}
+.site-header .site-brand:hover { opacity: .87; }
+.site-header .site-brand img.sp-shield-logo {
+  width: 79px;
+  min-width: 79px;
+  height: 88px;
+  max-width: 79px;
+  max-height: 88px;
+  object-fit: contain;
+  image-rendering: auto;
+  filter: drop-shadow(0 5px 9px rgba(0,0,0,.26));
+}
+.site-wordmark {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  color: #f4f4f5;
+  min-width: 0;
+  line-height: 1;
+  transform: translateY(2px);
+}
+.site-wordmark strong {
+  font-family: "Oswald","Arial Narrow",Arial,sans-serif;
+  font-size: clamp(27px,2.4vw,42px);
+  font-style: italic;
+  font-weight: 700;
+  letter-spacing: -.047em;
+  text-shadow: 0 2px 0 rgba(0,0,0,.25);
+  transform: skewX(-8deg);
+}
+.site-wordmark small {
+  display: block;
+  font-family: "DM Sans",Arial,sans-serif;
+  font-size: clamp(7px,.68vw,10px);
+  letter-spacing: .38em;
+  font-weight: 600;
+  color: #d3d3d7;
+  margin-top: 7px;
+  padding-left: 2px;
+}
+.site-header .main-nav {
+  display: flex;
+  align-items: center;
+  gap: clamp(16px, 2vw, 36px);
+  margin: 0;
+  padding: 0;
+  justify-self: center;
+  white-space: nowrap;
+}
+.site-header .main-nav a {
+  color: #e3e3e4;
+  font-family: "DM Sans",Arial,sans-serif;
+  font-size: clamp(12px,.82vw,15px);
+  font-weight: 500;
+  letter-spacing: -.015em;
+  text-transform: none;
+  padding: 15px 0;
+}
+.site-header .main-nav a:hover,
+.site-header .main-nav a.active { color: #fff; }
+.site-header .main-nav a::after { bottom: 9px; background: #fff; }
+.header-appointment {
+  justify-self: end;
+  display: inline-flex;
+  justify-content: center;
+  align-items: center;
+  gap: 13px;
+  white-space: nowrap;
+  min-height: 52px;
+  padding: 0 24px;
+  border-radius: 999px;
+  background: #fff;
+  color: #111216;
+  font: 700 13px/1.1 "DM Sans",Arial,sans-serif;
+  border: 1px solid rgba(255,255,255,.7);
+  box-shadow: 0 9px 25px rgba(0,0,0,.12);
+  transition: background .25s ease, transform .35s cubic-bezier(.22,1,.36,1),
+              box-shadow .25s ease;
+}
+.header-appointment span { font-size: 20px; font-weight: 500; line-height: 1; }
+.header-appointment:hover {
+  color: #111216;
+  background: #f1f1f3;
+  transform: translateY(-2px);
+  box-shadow: 0 11px 31px rgba(0,0,0,.24);
+}
+
+/* Mid-size laptops: preserve the centered menu without crowding. */
+@media (max-width: 1300px) {
+  .site-header .header-inner.layout {
+    width: calc(100% - 50px);
+    grid-template-columns: minmax(200px,1fr) auto minmax(165px,1fr);
+    gap: 14px;
+  }
+  .site-header .site-brand img.sp-shield-logo {
+    width: 66px; min-width: 66px; max-width: 66px; height: 78px;
+  }
+  .site-wordmark strong { font-size: 30px; }
+  .site-wordmark small { font-size: 8px; letter-spacing: .33em; }
+  .site-header .main-nav { gap: clamp(12px,1.3vw,21px); }
+  .site-header .main-nav a { font-size: 12px; }
+  .header-appointment { padding: 0 16px; font-size: 12px; min-height: 47px; }
+}
+@media (max-width: 1080px) and (min-width: 761px) {
+  .site-header { height: 88px; }
+  .site-header .header-inner.layout {
+    grid-template-columns: 76px auto minmax(151px,1fr);
+    gap: 10px;
+  }
+  .site-header .site-brand { gap: 0; }
+  .site-wordmark { display: none; }
+  .site-header .site-brand img.sp-shield-logo {
+    height: 72px; width: 66px; min-width: 66px; max-width: 66px;
+  }
+  .site-header .main-nav { gap: clamp(9px,1.1vw,15px); }
+  .site-header .main-nav a { font-size: 11.5px; }
+  .header-appointment { padding: 0 13px; font-size: 11px; gap: 7px; }
+}
+/* Mobile: keep the animated slide-down menu and place a compact white CTA next to it. */
+@media (max-width: 760px) {
+  .site-header { height: 75px; }
+  .site-header::before { width: min(205px,52vw); top: 3px; left: 15px; height: 2px; }
+  .site-header .header-inner.layout {
+    width: calc(100% - 36px);
+    display: flex;
+    gap: 10px;
+  }
+  .site-header .site-brand {
+    width: auto;
+    max-width: none;
+    min-width: 0;
+    flex: 1 1 auto;
+    gap: 9px;
+  }
+  .site-header .site-brand img.sp-shield-logo {
+    width: 54px;
+    min-width: 54px;
+    max-width: 54px;
+    height: 64px;
+    max-height: 64px;
+  }
+  .site-wordmark { display: flex; }
+  .site-wordmark strong { font-size: 24px; }
+  .site-wordmark small { font-size: 6.5px; letter-spacing: .25em; margin-top: 5px; }
+  .header-appointment {
+    order: 2;
+    flex-shrink: 0;
+    min-height: 38px;
+    padding: 0 10px;
+    font-size: 10px;
+    gap: 6px;
+  }
+  .header-appointment span { font-size: 15px; }
+  .site-header .menu-button { order: 3; flex-shrink: 0; margin-left: 0; }
+  /* Preserve the previously implemented staggered mobile menu. */
+  .site-header .main-nav {
+    display: flex;
+    position: absolute;
+    top: 75px;
+    left: 0;
+    right: 0;
+    z-index: 1;
+    justify-self: auto;
+    flex-direction: column;
+    align-items: stretch;
+    gap: 0;
+    margin: 0;
+    padding: 17px max(22px,calc((100vw - 520px)/2)) 27px;
+    max-height: calc(100dvh - 75px);
+    white-space: normal;
+  }
+  .site-header .main-nav a {
+    width: 100%;
+    font: 500 24px/1.2 "Oswald","Arial Narrow",sans-serif;
+    letter-spacing: .035em;
+    text-transform: uppercase;
+    padding: 11px 12px;
+  }
+}
+@media (max-width: 520px) {
+  .site-wordmark strong { font-size: 21px; }
+  .site-wordmark small { font-size: 5.7px; letter-spacing: .18em; }
+  .site-header .site-brand { gap: 4px; }
+  .site-header .site-brand img.sp-shield-logo {
+    width: 46px; min-width: 46px; max-width: 46px; height: 57px;
+  }
+  .header-appointment { font-size: 0; width: 40px; padding: 0; }
+  .header-appointment span { font-size: 19px; }
+}
+@media (max-width: 355px) {
+  .site-wordmark strong { font-size: 18px; }
+  .site-wordmark small { font-size: 5px; }
+}
+@media (prefers-reduced-motion: reduce) {
+  .header-appointment,.site-header .site-brand { transition: none; }
+}
