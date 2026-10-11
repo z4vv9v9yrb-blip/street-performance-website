@@ -1003,3 +1003,49 @@ img{display:block;max-width:100%}
 @media (prefers-reduced-motion: reduce) {
   .partner-ribbon { transition: none; }
 }
+
+
+
+/* Tuning: true before/after engine image, hosted locally (no hotlink blocks). */
+#tuning .tuning-comparison {
+  position: relative;
+  min-height: 0;
+  aspect-ratio: 1.55;
+  overflow: hidden;
+  display: grid;
+  place-items: center;
+  border: 1px solid rgba(200,168,110,.26);
+  border-radius: 14px;
+  background: #111315;
+  box-shadow: 0 20px 48px rgba(0,0,0,.27);
+}
+#tuning .tuning-comparison::before {
+  content: "";
+  position: absolute;
+  inset: -30px;
+  z-index: 0;
+  background: url("assets/tuning-vorher-nachher.webp") center / cover no-repeat;
+  filter: blur(29px) brightness(.3) saturate(.7);
+  transform: scale(1.13);
+  pointer-events: none;
+}
+#tuning .tuning-comparison img {
+  position: relative;
+  z-index: 1;
+  display: block;
+  width: 100%;
+  height: auto;
+  max-height: 100%;
+  object-fit: contain;
+  filter: none;
+  transform: none;
+  transition: none;
+  box-shadow: 0 8px 32px rgba(0,0,0,.2);
+}
+#tuning .tuning-comparison:hover img { transform: none; }
+@media(max-width:760px) {
+  #tuning .tuning-comparison { aspect-ratio: 1.7; width: 100%; min-height: 0; }
+}
+@media(max-width:450px) {
+  #tuning .tuning-comparison { aspect-ratio: 1.75; }
+}
