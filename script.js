@@ -440,7 +440,7 @@
   const stickyHeader = document.querySelector('header.site-header');
   if (stickyHeader) {
     const updateHeaderAppearance = () => {
-      stickyHeader.classList.toggle('is-scrolled', window.scrollY > 28);
+      stickyHeader.classList.toggle('is-scrolled', window.scrollY > Math.max(145, stickyHeader.offsetHeight + 30));
     };
     updateHeaderAppearance();
     window.addEventListener('scroll', updateHeaderAppearance, { passive: true });
