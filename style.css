@@ -2346,3 +2346,83 @@ img{display:block;max-width:100%}
     font-size: clamp(19px,2.35vw,23px);
   }
 }
+
+
+/* SERVICE / three service symbols in user supplied order:
+   01 motor, 02 brake rotor, 03 shock absorber & tire */
+#service .features-list > div {
+  grid-template-columns: 28px 50px minmax(0,1fr);
+  align-items: center;
+  column-gap: 15px;
+  padding: 20px 0;
+}
+#service .features-list .feature-symbol {
+  align-self: start;
+  padding-top: 18px;
+  font-size: 11px;
+  letter-spacing: .05em;
+  color: #c8a86e;
+}
+#service .features-list .feature-icon {
+  display: grid;
+  place-items: center;
+  width: 50px;
+  height: 53px;
+  padding: 6px;
+  color: #d1b47d;
+  background: linear-gradient(140deg,rgba(210,180,122,.07),rgba(255,255,255,.013));
+  border: 1px solid rgba(200,168,110,.2);
+  border-radius: 10px;
+  box-shadow: inset 0 1px 0 rgba(255,255,255,.03);
+  pointer-events: none;
+  transition: border-color .3s ease, background .3s ease, transform .35s ease;
+}
+#service .features-list .feature-icon svg {
+  display: block;
+  width: 100%;
+  height: 100%;
+  overflow: visible;
+}
+#service .features-list > div:hover .feature-icon {
+  background: rgba(200,168,110,.085);
+  border-color: rgba(200,168,110,.52);
+  transform: translateY(-2px);
+}
+#service .features-list .feature-description { min-width: 0; }
+#service .features-list .feature-description h4 {
+  color: #f3f3f3;
+  font-size: clamp(18px,1.6vw,22px);
+  line-height: 1.25;
+}
+#service .features-list .feature-description p {
+  font-size: clamp(12px,.99vw,14px);
+  line-height: 1.6;
+  margin: 0;
+  color: #aeb0b2;
+}
+@media (max-width: 520px) {
+  #service .features-list > div {
+    grid-template-columns: 23px 43px minmax(0,1fr);
+    column-gap: 10px;
+    padding: 19px 0;
+  }
+  #service .features-list .feature-symbol {
+    padding-top: 15px;
+    font-size: 10px;
+  }
+  #service .features-list .feature-icon {
+    width: 43px;
+    height: 46px;
+    padding: 5px;
+    border-radius: 8px;
+  }
+  #service .features-list .feature-description h4 {
+    font-size: clamp(17px,4.8vw,20px);
+  }
+  #service .features-list .feature-description p {
+    font-size: 12px;
+  }
+}
+@media (prefers-reduced-motion: reduce) {
+  #service .features-list .feature-icon { transition: none; }
+}
