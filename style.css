@@ -2464,3 +2464,175 @@ img{display:block;max-width:100%}
     line-height: 1.75;
   }
 }
+
+
+/* ===== Goldene Leistungs-Icons und informative Detailzeilen =====
+   Greift bewusst nur in Tuning, ECU, MFK, Prüfstand und Gönner ein. */
+:is(#tuning,#ecu,#mfk) .detail-feature-list {
+  margin: 28px 0 30px;
+  border-top: 1px solid rgba(255,255,255,.15);
+}
+:is(#tuning,#ecu,#mfk) .detail-feature-list > .detail-feature-row {
+  display: grid;
+  grid-template-columns: 28px 50px minmax(0,1fr);
+  align-items: center;
+  gap: 17px;
+  padding: 26px 0;
+  border-bottom: 1px solid rgba(255,255,255,.15);
+}
+:is(#tuning,#ecu,#mfk) .detail-feature-list .feature-symbol {
+  align-self: start;
+  padding-top: 19px;
+  color: #c8a86e;
+  font-size: 11px;
+  font-weight: 700;
+  letter-spacing: .05em;
+}
+:is(#tuning,#ecu,#mfk) .detail-feature-list .feature-icon,
+#dyno .dyno-benefit-icon,
+#goenner .tier-icon {
+  display: grid;
+  place-items: center;
+  width: 50px;
+  height: 53px;
+  padding: 7px;
+  border-radius: 10px;
+  border: 1px solid rgba(200,168,110,.24);
+  color: #d1b47d;
+  background: linear-gradient(140deg,rgba(210,180,122,.075),rgba(255,255,255,.012));
+  box-shadow: inset 0 1px 0 rgba(255,255,255,.035);
+  pointer-events: none;
+  transition: border-color .28s ease, background .28s ease, transform .32s ease;
+}
+:is(#tuning,#ecu,#mfk) .detail-feature-list .feature-icon svg,
+#dyno .dyno-benefit-icon svg,
+#goenner .tier-icon svg {
+  display: block;
+  width: 100%;
+  height: 100%;
+  overflow: visible;
+}
+:is(#tuning,#ecu,#mfk) .detail-feature-list > .detail-feature-row:hover .feature-icon {
+  background: rgba(200,168,110,.085);
+  border-color: rgba(200,168,110,.52);
+  transform: translateY(-2px);
+}
+:is(#tuning,#ecu,#mfk) .detail-feature-list .feature-description {
+  min-width: 0;
+}
+:is(#tuning,#ecu,#mfk) .detail-feature-list .feature-description h4 {
+  margin: 0 0 8px;
+  color: #f3f3f3;
+  font-size: clamp(18px,1.6vw,22px);
+  line-height: 1.25;
+}
+:is(#tuning,#ecu,#mfk) .detail-feature-list .feature-description p {
+  max-width: 66ch;
+  margin: 0;
+  color: #b9bbbd;
+  font-size: clamp(13px,1.05vw,14.5px);
+  line-height: 1.8;
+  text-wrap: pretty;
+}
+#ecu .feature-copy > p {
+  margin-bottom: 12px;
+}
+#dyno .dyno-benefits {
+  display: grid;
+  gap: 0;
+  margin: 0 0 28px;
+  border-top: 1px solid rgba(255,255,255,.16);
+}
+#dyno .dyno-benefit {
+  display: grid;
+  grid-template-columns: 42px minmax(0,1fr);
+  gap: 15px;
+  align-items: start;
+  padding: 15px 0;
+  border-bottom: 1px solid rgba(255,255,255,.13);
+}
+#dyno .dyno-benefit-icon {
+  width: 42px;
+  height: 44px;
+  padding: 6px;
+}
+#dyno .dyno-benefit h3 {
+  color: #f3f3f3;
+  font-size: clamp(17px,1.6vw,21px);
+  line-height: 1.25;
+  margin: 0 0 4px;
+}
+#dyno .dyno-benefit p {
+  max-width: 62ch;
+  margin: 0;
+  color: #bec0c2;
+  font-size: clamp(12.5px,.99vw,14px);
+  line-height: 1.7;
+  text-wrap: pretty;
+}
+#goenner .racing-tiers .tier {
+  min-width: 0;
+  min-height: 292px;
+  padding: 24px;
+}
+#goenner .tier-icon {
+  width: 45px;
+  height: 48px;
+  padding: 7px;
+  margin: 0 0 19px;
+}
+#goenner .tier h3 {
+  margin: 13px 0 9px;
+}
+#goenner .tier p {
+  margin-top: 14px;
+  font-size: 12.5px;
+  line-height: 1.75;
+  color: #bec0c2;
+  text-wrap: pretty;
+}
+@media (max-width: 760px) {
+  :is(#tuning,#ecu,#mfk) .detail-feature-list > .detail-feature-row {
+    padding: 24px 0;
+  }
+  #dyno .dyno-benefits { margin-bottom: 25px; }
+}
+@media (max-width: 520px) {
+  :is(#tuning,#ecu,#mfk) .detail-feature-list > .detail-feature-row {
+    grid-template-columns: 23px 43px minmax(0,1fr);
+    gap: 10px;
+    padding: 22px 0;
+  }
+  :is(#tuning,#ecu,#mfk) .detail-feature-list .feature-symbol {
+    padding-top: 16px;
+    font-size: 10px;
+  }
+  :is(#tuning,#ecu,#mfk) .detail-feature-list .feature-icon {
+    width: 43px;
+    height: 46px;
+    padding: 6px;
+    border-radius: 8px;
+  }
+  :is(#tuning,#ecu,#mfk) .detail-feature-list .feature-description h4 {
+    font-size: clamp(17px,4.8vw,20px);
+    margin-bottom: 7px;
+  }
+  :is(#tuning,#ecu,#mfk) .detail-feature-list .feature-description p {
+    font-size: 12.5px;
+    line-height: 1.75;
+  }
+  #dyno .dyno-benefit {
+    grid-template-columns: 39px minmax(0,1fr);
+    gap: 12px;
+  }
+  #dyno .dyno-benefit-icon {
+    width: 39px;
+    height: 41px;
+  }
+  #dyno .dyno-benefit p { font-size: 12.5px; }
+}
+@media (prefers-reduced-motion: reduce) {
+  :is(#tuning,#ecu,#mfk) .detail-feature-list .feature-icon,
+  #dyno .dyno-benefit-icon,
+  #goenner .tier-icon { transition: none; }
+}
