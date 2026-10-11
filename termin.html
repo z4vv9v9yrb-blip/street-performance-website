@@ -341,19 +341,19 @@
             <legend>Welche Serviceleistung benötigst du?</legend>
             <p class="service-picker-hint">Du kannst auch mehrere Leistungen auswählen. Sie werden automatisch in deine Nachricht übernommen.</p>
             <div class="service-picker-options">
-              <label class="service-option"><input type="checkbox" value="motor"><span class="service-option-body"><span class="service-option-icon" aria-hidden="true"><svg viewBox="0 0 64 64" focusable="false" aria-hidden="true" fill="none" stroke="currentColor" stroke-width="2.3" stroke-linecap="round" stroke-linejoin="round">
+              <label class="service-option"><input type="checkbox" value="motor" data-label="Motor &amp; Ölservice"><span class="service-option-body"><span class="service-option-icon" aria-hidden="true"><svg viewBox="0 0 64 64" focusable="false" aria-hidden="true" fill="none" stroke="currentColor" stroke-width="2.3" stroke-linecap="round" stroke-linejoin="round">
   <path d="M22 9h20v7H22zM25 5v4m7-4v4m7-4v4M21 16l-7 7-6-3-5 10 9 7 5-3 7 19h17l7-19 5 3 8-9-7-8-7 4-6-8"/>
   <path d="M17 34l6-8 16-2 9 10M23 51l-3-15 5-10m17 25 2-14-5-13"/>
   <circle cx="25" cy="33" r="6"/><circle cx="39" cy="35" r="9"/><circle cx="25" cy="46" r="4"/>
   <path d="M28 29l4-2 4 2m-8 8 2 3h3m5-12 1 7-4 6-7 5"/>
 </svg></span><span class="service-option-label">Motor &amp; Ölservice</span><span class="service-option-check" aria-hidden="true">✓</span></span></label>
-              <label class="service-option"><input type="checkbox" value="bremsen"><span class="service-option-body"><span class="service-option-icon" aria-hidden="true"><svg viewBox="0 0 64 64" focusable="false" aria-hidden="true" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round">
+              <label class="service-option"><input type="checkbox" value="bremsen" data-label="Bremsen"><span class="service-option-body"><span class="service-option-icon" aria-hidden="true"><svg viewBox="0 0 64 64" focusable="false" aria-hidden="true" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round">
   <circle cx="29" cy="32" r="23"/><circle cx="29" cy="32" r="14"/><circle cx="29" cy="32" r="5"/>
   <circle cx="29" cy="22" r="2.1"/><circle cx="39" cy="32" r="2.1"/><circle cx="29" cy="42" r="2.1"/><circle cx="19" cy="32" r="2.1"/>
   <path d="M47 15a23 23 0 0 1 6 28l-7-7 1-11z" fill="currentColor" stroke="none"/>
   <path d="M14 14a25 25 0 0 1 27-3m9 36a25 25 0 0 1-35 5"/>
 </svg></span><span class="service-option-label">Bremsen</span><span class="service-option-check" aria-hidden="true">✓</span></span></label>
-              <label class="service-option"><input type="checkbox" value="fahrwerk"><span class="service-option-body"><span class="service-option-icon" aria-hidden="true"><svg viewBox="0 0 64 64" focusable="false" aria-hidden="true" fill="none" stroke="currentColor" stroke-width="2.3" stroke-linecap="round" stroke-linejoin="round">
+              <label class="service-option"><input type="checkbox" value="fahrwerk" data-label="Fahrwerk"><span class="service-option-body"><span class="service-option-icon" aria-hidden="true"><svg viewBox="0 0 64 64" focusable="false" aria-hidden="true" fill="none" stroke="currentColor" stroke-width="2.3" stroke-linecap="round" stroke-linejoin="round">
   <path d="M10 7h16M12 12h12M18 12v8M10 20l16 3-16 4 16 4-16 4 16 4-16 4 16 4-16 3M18 50v7M8 57h20"/>
   <path d="M32 15h22v42H32zM37 15v42m6-42v42m5-42v42"/>
   <path d="M33 19l4-2m-4 10 4-2m-4 10 4-2m-4 10 4-2m-4 10 4-2M43 20l5 3m-5 5 5 3m-5 5 5 3m-5 5 5 3m-5 5 5 3"/>
@@ -555,7 +555,13 @@
         let previousBlock = "";
 
         function updateSelectedLeistungen() {
-          const selected = boxes.filter(box => box.checked).map(box => box.dataset.label);
+          const selected = boxes.filter(box => box.checked).map(box => {
+            // Der sichtbare Titel ist die verlässlichste Quelle:
+            // vermeidet "undefined", auch falls ein data-label fehlt.
+            const visibleTitle = box.closest(".service-option")
+              ?.querySelector(".service-option-label")?.textContent?.trim();
+            return visibleTitle || box.dataset.label?.trim() || box.value;
+          });
           if (selectedField) selectedField.value = selected.join(", ");
           const nextBlock = selected.length
             ? "Gewünschte Leistungen:\n" + selected.map(label => "• " + label).join("\n") + "\n\n"
