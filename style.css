@@ -2847,3 +2847,48 @@ html body > header.site-header::before {
   content: none !important;
   display: none !important;
 }
+
+
+/* GT-R-HERBSTBILD — Weisser Nissan GT-R aus dem gelieferten Foto.
+   Titel, Beschreibung, goldener Pfeil und Shop-Verlinkung bleiben klickbares HTML. */
+.explore-hub .explore-gtr {
+  border-color: rgba(200,168,110,.45);
+}
+.explore-hub .explore-gtr .explore-photo {
+  background-color: #13110f;
+  background-image:
+    url("assets/gtr-autumn-white.avif"),
+    url("assets/nissan-gt3.webp");
+  background-position: center 56%, center;
+  background-size: cover, cover;
+  background-repeat: no-repeat;
+  opacity: .94;
+  filter: saturate(.90) contrast(1.08) brightness(.91);
+  transition: transform .8s cubic-bezier(.22,1,.36,1),opacity .6s ease,filter .6s ease;
+}
+.explore-hub .explore-gtr::after {
+  background: linear-gradient(
+    180deg,
+    rgba(4,5,7,.67) 0%,
+    rgba(4,5,7,.12) 26%,
+    rgba(4,5,7,.06) 48%,
+    rgba(4,5,7,.42) 69%,
+    rgba(4,5,7,.94) 100%
+  );
+}
+.explore-hub .explore-gtr .explore-outbound {
+  background: #d1b076;
+  color: #101112;
+  border-color: rgba(255,235,191,.18);
+}
+.explore-hub .explore-gtr:hover .explore-photo,
+.explore-hub .explore-gtr:focus-visible .explore-photo {
+  transform: scale(1.035);
+  opacity: .98;
+  filter: saturate(1.03) contrast(1.06) brightness(.99);
+}
+@media(max-width:690px) {
+  .explore-hub .explore-gtr .explore-photo {
+    background-position: center 58%, center;
+  }
+}
