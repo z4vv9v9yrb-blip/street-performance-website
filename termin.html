@@ -216,7 +216,10 @@
       </section>
 
       <section class="form-panel" aria-label="Terminanfrage senden">
-        <form id="appointmentForm" class="contact-form">
+        <form id="appointmentForm" class="contact-form" action="https://formsubmit.co/ahmed.bektovic@icloud.com" method="POST">
+          <input type="hidden" name="_subject" value="Neue Terminanfrage – Street Performance">
+          <input type="hidden" name="_template" value="table">
+          <input type="text" name="_honey" tabindex="-1" autocomplete="off" aria-hidden="true" style="display:none">
           <div class="form-grid">
             <div class="field">
               <label for="firstName">Vorname</label>
@@ -236,7 +239,7 @@
             <textarea id="message" name="message" placeholder="Ich interessiere mich für einen Termin / eine Beratung ..." required maxlength="5000"></textarea>
           </div>
           <button type="submit" class="send-button">Nachricht senden</button>
-          <p class="form-notice">Beim Absenden öffnet sich dein E-Mail-Programm mit der vorbereiteten Anfrage. Bitte bestätige den Versand dort.</p>
+          <p class="form-notice">Deine Anfrage wird über FormSubmit an uns übermittelt. Beim ersten Versand muss der Empfänger die E-Mail-Adresse einmalig bestätigen.</p>
           <p id="formFeedback" class="form-feedback" role="status" aria-live="polite"></p>
         </form>
       </section>
@@ -244,34 +247,6 @@
     <div class="photo-credit">Hintergrundfoto: Hansueli Krapf / <a href="https://commons.wikimedia.org/wiki/File:Aerial_View_of_Stein_am_Rhein_15.07.2008_16-39-44.JPG" target="_blank" rel="noopener noreferrer">Wikimedia Commons</a> (<a href="https://creativecommons.org/licenses/by-sa/3.0/" target="_blank" rel="noopener noreferrer">CC BY-SA 3.0</a>)</div>
   </main>
 
-  <script>
-    (() => {
-      const form = document.getElementById('appointmentForm');
-      const feedback = document.getElementById('formFeedback');
-      if (!form || !feedback) return;
-      form.addEventListener('submit', (event) => {
-        event.preventDefault();
-        if (!form.checkValidity()) {
-          form.reportValidity();
-          return;
-        }
-        const first = document.getElementById('firstName').value.trim();
-        const last = document.getElementById('lastName').value.trim();
-        const email = document.getElementById('email').value.trim();
-        const message = document.getElementById('message').value.trim();
-        if (!first || !last || !email || !message) {
-          feedback.textContent = 'Bitte fülle alle Felder aus.';
-          return;
-        }
-        const subject = 'Terminanfrage Street Performance – ' + first + ' ' + last;
-        const body = 'Vorname: ' + first + '\nNachname: ' + last
-          + '\nE-Mail: ' + email + '\n\nNachricht:\n' + message;
-        const url = 'mailto:info@street-performance.ch?subject='
-          + encodeURIComponent(subject) + '&body=' + encodeURIComponent(body);
-        feedback.textContent = 'Dein E-Mail-Programm wird geöffnet. Bitte sende die vorbereitete Nachricht dort ab.';
-        window.location.href = url;
-      });
-    })();
-  </script>
+
 </body>
 </html>
