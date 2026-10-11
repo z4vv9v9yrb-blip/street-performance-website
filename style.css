@@ -1176,138 +1176,238 @@ img{display:block;max-width:100%}
 }
 
 
-/* DYNO — cinematic full-bleed video background, manual sound-on playback */
-#dyno .dyno-video-media {
-  overflow: hidden;
-  background: #0c1013;
-}
-#dyno .dyno-video {
+/* =============================================
+   DYNO: premium split layout with a dedicated
+   playable YouTube video / sound via YouTube
+   ============================================= */
+#dyno.dyno-split-section {
+  position: relative;
   display: block;
+  min-height: 0;
+  isolation: isolate;
+  overflow: hidden;
+  background:
+    radial-gradient(ellipse 55% 70% at 86% 44%, rgba(200,168,110,.075), transparent 72%),
+    radial-gradient(ellipse 42% 85% at 0 50%, rgba(22,30,37,.42), transparent 74%),
+    linear-gradient(125deg, #090b0d 0%, #111416 60%, #0c0e10 100%);
+  border-top: 1px solid rgba(255,255,255,.055);
+  border-bottom: 1px solid rgba(255,255,255,.08);
+}
+#dyno.dyno-split-section::before {
+  content: "";
   position: absolute;
   inset: 0;
-  width: 100%;
-  height: 100%;
-  object-fit: cover;
-  object-position: center;
-  filter: saturate(.88) contrast(1.06) brightness(.67);
   pointer-events: none;
+  z-index: -1;
+  opacity: .24;
+  background: linear-gradient(110deg, transparent 0%, transparent 51%, rgba(200,168,110,.055) 51.1%, transparent 51.25%);
 }
-#dyno .dyno-shade {
-  pointer-events: none;
-  background: linear-gradient(90deg,
-    rgba(5,7,9,.94) 0%,
-    rgba(5,7,9,.82) 37%,
-    rgba(5,7,9,.56) 65%,
-    rgba(5,7,9,.2) 100%
-  ), linear-gradient(0deg,rgba(5,7,9,.48),transparent 62%);
+#dyno .dyno-layout {
+  display: grid;
+  width: min(1570px, calc(100% - 92px));
+  grid-template-columns: minmax(0, 1.02fr) minmax(0, .98fr);
+  align-items: center;
+  gap: clamp(44px, 5vw, 96px);
+  padding: clamp(88px, 8vw, 134px) 0;
 }
 #dyno .dyno-content {
+  padding: 0;
+  min-width: 0;
+  width: 100%;
+  position: relative;
   z-index: 1;
 }
-#dyno .dyno-video-controls {
-  position: absolute;
-  z-index: 3;
-  right: max(25px, calc((100vw - 1580px) / 2));
-  bottom: 33px;
+#dyno .dyno-content .section-index {
+  display: block;
+  font-size: 11px;
+  letter-spacing: .16em;
+  white-space: normal;
+}
+#dyno .dyno-content h2 {
+  font-size: clamp(58px, 6vw, 101px);
+  line-height: 1.06;
+  margin: 30px 0 22px;
+  max-width: 100%;
+  overflow-wrap: normal;
+  letter-spacing: -.042em;
+}
+#dyno .dyno-content h2 em { color: #c8a86e; }
+#dyno .dyno-content > p {
+  color: #c8c9ca;
+  font-size: clamp(14px, 1.15vw, 17px);
+  line-height: 1.85;
+  max-width: 680px;
+  margin: 0 0 39px;
+}
+#dyno .dyno-stats {
   display: flex;
-  align-items: center;
-  justify-content: flex-end;
-  gap: 10px;
-  max-width: min(450px,calc(100% - 40px));
+  align-items: flex-start;
+  flex-wrap: wrap;
+  gap: clamp(23px, 3vw, 52px);
+  margin: 0 0 37px;
 }
-#dyno .dyno-video-toggle,
-#dyno .dyno-video-sound {
-  appearance: none;
-  -webkit-appearance: none;
-  display: inline-flex;
-  align-items: center;
-  justify-content: center;
-  border: 1px solid rgba(221,186,120,.65);
-  border-radius: 999px;
-  background: rgba(10,12,14,.86);
-  color: #fafafa;
-  box-shadow: 0 12px 33px rgba(0,0,0,.34);
-  -webkit-backdrop-filter: blur(12px);
-  backdrop-filter: blur(12px);
-  cursor: pointer;
-  transition: background .28s ease, color .28s ease, transform .3s cubic-bezier(.22,1,.36,1), border-color .28s ease;
+#dyno .dyno-stats > div {
+  min-width: min(192px, 42%);
+  flex: 0 1 auto;
+  padding-top: 17px;
+  border-top: 1px solid rgba(255,255,255,.31);
 }
-#dyno .dyno-video-toggle {
-  min-height: 49px;
+#dyno .dyno-stats strong {
+  font-size: clamp(47px, 5.15vw, 78px);
+  line-height: 1.14;
+  white-space: nowrap;
+}
+#dyno .dyno-stats strong small {
+  font-size: clamp(13px, 1.25vw, 19px);
+  color: #c8a86e;
+}
+#dyno .dyno-stats > div > span { color: #acb0b1; }
+#dyno .dyno-content .primary-cta {
+  max-width: 100%;
+  transition: background .3s ease, color .3s ease, transform .3s ease;
+}
+#dyno .dyno-content .primary-cta:hover { transform: translateY(-3px); }
+
+/* Right-side video card */
+#dyno .dyno-youtube-card {
+  min-width: 0;
+  width: 100%;
+  background: linear-gradient(165deg, #1c2022, #111416 90%);
+  padding: clamp(15px,1.6vw,23px);
+  border: 1px solid rgba(200,168,110,.27);
+  border-radius: 18px;
+  box-shadow: 0 26px 70px rgba(0,0,0,.47), inset 0 1px 0 rgba(255,255,255,.04);
+  position: relative;
+}
+#dyno .dyno-youtube-card::before {
+  content: "";
+  position: absolute;
+  left: 20px;
+  top: 0;
+  width: 102px;
+  height: 2px;
+  background: linear-gradient(90deg, #c8a86e, rgba(200,168,110,0));
+}
+#dyno .dyno-video-heading {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
   gap: 12px;
-  padding: 0 20px 0 13px;
-  font: 750 11px/1.2 "DM Sans", Arial, sans-serif;
-  letter-spacing: .065em;
+  padding: 1px 1px 16px;
+  font: 700 11px/1.4 "DM Sans", Arial, sans-serif;
+  color: #d9b97d;
+  letter-spacing: .13em;
 }
-#dyno .dyno-video-toggle-icon {
+#dyno .dyno-status-dot {
+  display: inline-block;
+  width: 7px;
+  height: 7px;
+  border-radius: 50%;
+  background: #d6b371;
+  box-shadow: 0 0 12px rgba(200,168,110,.54);
+  margin-right: 10px;
+  vertical-align: 1px;
+}
+#dyno .dyno-video-heading-mark { color: #8b8d90; font-size: 18px; }
+#dyno .dyno-youtube-frame {
+  aspect-ratio: 16 / 9;
+  position: relative;
+  width: 100%;
+  border-radius: 9px;
+  overflow: hidden;
+  background: #080a0d;
+  box-shadow: 0 13px 35px rgba(0,0,0,.35);
+}
+#dyno .dyno-youtube-frame iframe {
+  position: absolute;
+  inset: 0;
+  border: 0;
+  display: block;
+  width: 100%;
+  height: 100%;
+}
+#dyno .dyno-video-caption {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 20px;
+  padding: 19px 3px 2px;
+}
+#dyno .dyno-video-caption > div { min-width: 0; }
+#dyno .dyno-video-caption span {
+  font: 750 10px/1.4 "DM Sans", Arial, sans-serif;
+  letter-spacing: .12em;
+  color: #c8a86e;
+}
+#dyno .dyno-video-caption h3 {
+  font-size: clamp(22px, 2.3vw, 31px);
+  font-weight: 500;
+  line-height: 1.22;
+  color: #f2f2f2;
+  margin: 5px 0 4px;
+}
+#dyno .dyno-video-caption p {
+  font: 400 12px/1.5 "DM Sans", Arial, sans-serif;
+  color: #a7aaac;
+}
+#dyno .dyno-video-caption a {
   display: grid;
   place-items: center;
-  background: #c8a86e;
-  color: #131415;
-  width: 29px;
-  height: 29px;
-  flex: 0 0 29px;
-  padding-left: 2px;
+  flex: 0 0 41px;
+  width: 41px;
+  height: 41px;
+  border: 1px solid rgba(200,168,110,.4);
   border-radius: 50%;
-  font-size: 13px;
+  color: #dfbe83;
+  font-size: 21px;
+  transition: background .25s ease, color .25s ease, transform .25s ease;
 }
-#dyno .dyno-video-sound {
-  width: 49px;
-  height: 49px;
-  flex: 0 0 49px;
-  font-size: 20px;
-}
-#dyno .dyno-video-sound[hidden] { display: none; }
-#dyno .dyno-video-toggle:hover,
-#dyno .dyno-video-sound:hover {
+#dyno .dyno-video-caption a:hover {
+  transform: translate(2px, -2px);
   background: #c8a86e;
-  border-color: #e4c587;
-  color: #101112;
-  transform: translateY(-2px);
+  color: #111;
 }
-#dyno .dyno-video-toggle:hover .dyno-video-toggle-icon { background: #fff; }
-#dyno .dyno-video-toggle:focus-visible,
-#dyno .dyno-video-sound:focus-visible {
-  outline: 2px solid #f9dc9b;
-  outline-offset: 4px;
-}
-#dyno .dyno-video-error[hidden] { display: none; }
-#dyno .dyno-video-error {
-  position: absolute;
-  right: 0;
-  bottom: 63px;
-  max-width: min(330px,calc(100vw - 35px));
-  padding: 13px 18px;
-  border: 1px solid rgba(200,168,110,.42);
-  border-radius: 9px;
-  background: rgba(8,10,11,.94);
-  color: #e8e8e8;
-  font: 500 12px/1.5 "DM Sans",Arial,sans-serif;
-  box-shadow: 0 15px 34px rgba(0,0,0,.3);
-}
-#dyno .dyno-video-error a {
-  color: #e2c487;
-  text-decoration: underline;
-  text-underline-offset: 3px;
-}
-@media (max-width: 850px) {
-  #dyno .dyno-shade {
-    background: linear-gradient(90deg,rgba(5,7,9,.88),rgba(5,7,9,.55)),
-      linear-gradient(0deg,rgba(5,7,9,.42),transparent);
+@media (max-width: 1250px) {
+  #dyno .dyno-layout {
+    width: min(1180px, calc(100% - 62px));
+    gap: clamp(30px,3.5vw,58px);
+    grid-template-columns: minmax(0,1fr) minmax(0,1fr);
   }
-  #dyno .dyno-content { padding-bottom: 130px; }
-  #dyno .dyno-video-controls {
-    bottom: 30px;
-    right: 20px;
-    left: 20px;
-    max-width: none;
-    justify-content: flex-start;
-  }
+  #dyno .dyno-content h2 { font-size: clamp(56px,6vw,75px); }
+  #dyno .dyno-stats strong { font-size: clamp(48px,5.5vw,65px); }
+  #dyno .dyno-stats > div { min-width: min(160px,42%); }
 }
-@media (max-width: 450px) {
-  #dyno .dyno-video-toggle { padding-right: 14px; gap: 9px; min-height: 46px; font-size: 10px; }
-  #dyno .dyno-video-sound { width: 46px; height: 46px; flex-basis: 46px; }
+@media (max-width: 900px) {
+  #dyno .dyno-layout {
+    display: flex;
+    flex-direction: column;
+    align-items: stretch;
+    gap: 50px;
+    width: calc(100% - 62px);
+    padding: 80px 0 90px;
+  }
+  #dyno .dyno-content h2 { font-size: clamp(57px,9vw,88px); }
+  #dyno .dyno-stats strong { font-size: clamp(48px,8vw,70px); }
+  #dyno .dyno-youtube-card { max-width: 720px; margin-inline: auto; }
+}
+@media (max-width: 760px) {
+  #dyno .dyno-layout { width: calc(100% - 40px); padding: 68px 0 77px; gap: 42px; }
+  #dyno .dyno-content { padding: 0; }
+  #dyno .dyno-content h2 { font-size: clamp(52px,10.7vw,78px); margin: 26px 0 20px; }
+  #dyno .dyno-content > p { font-size: 13px; line-height: 1.8; }
+  #dyno .dyno-stats { gap: 25px; }
+  #dyno .dyno-stats strong { font-size: clamp(42px,9vw,68px); }
+  #dyno .dyno-youtube-card { padding: 15px; border-radius: 14px; }
+  #dyno .dyno-video-caption { padding: 17px 2px 2px; }
+}
+@media (max-width: 430px) {
+  #dyno .dyno-layout { width: calc(100% - 32px); }
+  #dyno .dyno-stats { gap: 18px; }
+  #dyno .dyno-stats > div { min-width: calc(50% - 9px); }
+  #dyno .dyno-stats strong { font-size: clamp(37px,10vw,50px); }
+  #dyno .dyno-stats strong small { font-size: 12px; }
+  #dyno .dyno-video-heading { font-size: 9px; }
 }
 @media (prefers-reduced-motion: reduce) {
-  #dyno .dyno-video-toggle, #dyno .dyno-video-sound { transition: none; }
+  #dyno .dyno-video-caption a, #dyno .dyno-content .primary-cta { transition: none; }
 }
