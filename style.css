@@ -1767,3 +1767,9 @@ img{display:block;max-width:100%}
   aspect-ratio: 78 / 90;
   background-image: url("assets/hero-star-5.webp");
 }
+
+/* Verbindliche goldene Headerlinie über dem SP-Logo */
+.site-header::before {
+  background: linear-gradient(90deg, #b69556 0%, #e8cc90 48%, #c8a86e 100%) !important;
+  background-color: #c8a86e !important;
+}
