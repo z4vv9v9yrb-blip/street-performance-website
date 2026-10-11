@@ -434,6 +434,19 @@
     render(slider.value);
   });
 
+
+  // Sticky glass navigation: remains visible and becomes frosted on scroll.
+  // Text, logos and the appointment CTA are never blurred.
+  const stickyHeader = document.querySelector('header.site-header');
+  if (stickyHeader) {
+    const updateHeaderAppearance = () => {
+      stickyHeader.classList.toggle('is-scrolled', window.scrollY > 28);
+    };
+    updateHeaderAppearance();
+    window.addEventListener('scroll', updateHeaderAppearance, { passive: true });
+    window.addEventListener('pageshow', updateHeaderAppearance);
+  }
+
   // Section-aware navigation.
   const sections = [...document.querySelectorAll('main section[id]')];
   if ('IntersectionObserver' in window && nav) {
