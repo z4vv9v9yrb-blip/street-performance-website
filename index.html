@@ -10,7 +10,7 @@
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&family=Oswald:wght@400;500;600;700&display=swap" rel="stylesheet">
-  <link rel="stylesheet" href="style.css?v=tuning-motor-vergleich-20261011">
+  <link rel="stylesheet" href="style.css?v=ecu-video-mit-ton-20261011">
 </head>
 <body>
   <a class="skip-link" href="#service">Zum Inhalt springen</a>
@@ -150,8 +150,23 @@
           <p>Individuelle Softwareanpassungen am Motorsteuergerät können das Ansprechverhalten und die Leistungsentfaltung eines Fahrzeugs optimieren.</p>
         </div>
         <div class="feature-two-col">
-          <figure class="feature-photo reveal">
-            <img src="https://street-performance.ch/wp-content/uploads/2021/08/53873422_2009996425714336_87806883918564-1.jpg" data-fallback="https://framerusercontent.com/images/N0YrY09hG0VHDZkLF1f36XHzQ4.png?width=1000" alt="Leistungsoptimierung und ECU-Abstimmung" loading="lazy">
+          <figure class="feature-photo ecu-video-feature reveal">
+            <div class="ecu-video-frame" id="ecuVideoFrame">
+              <video id="ecuVideo" class="ecu-video" controls playsinline preload="metadata" poster="assets/tuning-vorher-nachher.webp" aria-label="Street Performance ECU-Video mit Ton">
+                <source src="https://street-performance.ch/wp-content/uploads/2021/08/WhatsApp-Video-2021-08-05-at-17.39.27.mp4" type="video/mp4">
+                Dein Browser unterstützt dieses Video leider nicht.
+              </video>
+              <button id="ecuVideoPlay" class="ecu-video-play" type="button" aria-label="ECU-Video mit Ton abspielen">
+                <span class="ecu-play-disc" aria-hidden="true">▶</span>
+                <span>VIDEO MIT TON ABSPIELEN</span>
+              </button>
+              <div class="ecu-video-error" id="ecuVideoError" hidden role="status">
+                <strong>Video gerade nicht verfügbar</strong>
+                <span>Du kannst es auch direkt beim Anbieter öffnen.</span>
+                <a href="https://street-performance.ch/wp-content/uploads/2021/08/WhatsApp-Video-2021-08-05-at-17.39.27.mp4" target="_blank" rel="noopener noreferrer">Video direkt öffnen ↗</a>
+              </div>
+            </div>
+            <figcaption class="ecu-video-caption"><span>ECU / SOFTWARE-ABSTIMMUNG</span><span>▶ VIDEO MIT TON</span></figcaption>
           </figure>
           <div class="feature-copy reveal">
             <span class="minor-heading">PRÄZISION IN DER SOFTWARE</span>
@@ -255,6 +270,6 @@
     </div>
     <div class="layout footer-bottom"><span>© Real Street Performance GmbH. Alle Rechte vorbehalten.</span><a href="#top">Nach oben ↑</a></div>
   </footer>
-  <script src="script.js?v=reveal-scroll-20261011" defer></script>
+  <script src="script.js?v=ecu-video-mit-ton-20261011" defer></script>
 </body>
 </html>
