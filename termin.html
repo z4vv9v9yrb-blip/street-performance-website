@@ -32,6 +32,7 @@
     .top-inner{height:100%;width:min(1690px,calc(100% - 108px));margin:auto;display:flex;align-items:center;justify-content:space-between;gap:24px}
     .brand{display:inline-flex;align-items:center;gap:13px;min-width:0}
     .brand img{display:block;width:60px;height:67px;object-fit:contain}
+    .brand .brand-image{display:block;flex:0 0 60px;width:60px;height:67px;background:url("assets/sp-shield-hd.png") center/contain no-repeat}
     .brand-name{display:flex;flex-direction:column;gap:0;color:#fff;line-height:1}
     .brand-name strong{font:800 27px/1.1 "Manrope",Arial,sans-serif;letter-spacing:-.055em}
     .brand-name small{font:600 9px/1.6 "DM Sans",Arial,sans-serif;letter-spacing:.25em;color:#c6c6c6;margin-top:1px}
@@ -245,7 +246,7 @@
   <header class="topbar">
     <div class="top-inner">
       <a class="brand" href="index.html" aria-label="Zur Street Performance Startseite">
-        <img src="assets/sp-shield-hd.png" alt="" width="260" height="260">
+        <span class="brand-image" aria-hidden="true"></span>
         <span class="brand-name"><strong>STREET PERFORMANCE</strong><small>REAL STREET PERFORMANCE GMBH</small></span>
       </a>
       <a class="back-link" href="index.html">Zurück zur Website <span aria-hidden="true">→</span></a>
