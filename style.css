@@ -438,7 +438,7 @@ img{display:block;max-width:100%}
   height: 3px;
   top: 8px;
   left: clamp(18px, 2.9vw, 52px);
-  background: linear-gradient(90deg,#f02238,#de2031);
+  background: linear-gradient(90deg, #b69556 0%, #e8cc90 48%, #c8a86e 100%);
   pointer-events: none;
   z-index: 1;
 }
