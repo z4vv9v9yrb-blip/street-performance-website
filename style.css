@@ -1729,3 +1729,41 @@ img{display:block;max-width:100%}
     animation:none !important;opacity:1 !important;transform:none !important;filter:none !important;
   }
 }
+
+
+/* SP-Hero ohne native <img>-Elemente: Browser-Bildersuche-Overlay vermeiden.
+   Die Stern-Animationen, Positionierung und Bildqualität bleiben erhalten. */
+#top .hero-logo-assembly .hero-logo-base {
+  display: block;
+  width: 100%;
+  height: auto;
+  aspect-ratio: 1 / 1;
+  background: url("assets/hero-shield-no-stars.webp") center / contain no-repeat;
+}
+#top .hero-logo-assembly .hero-logo-star {
+  display: block;
+  height: auto;
+  background-position: center;
+  background-size: contain;
+  background-repeat: no-repeat;
+}
+#top .hero-logo-assembly .hero-logo-star-1 {
+  aspect-ratio: 78 / 90;
+  background-image: url("assets/hero-star-1.webp");
+}
+#top .hero-logo-assembly .hero-logo-star-2 {
+  aspect-ratio: 104 / 116;
+  background-image: url("assets/hero-star-2.webp");
+}
+#top .hero-logo-assembly .hero-logo-star-3 {
+  aspect-ratio: 130 / 136;
+  background-image: url("assets/hero-star-3.webp");
+}
+#top .hero-logo-assembly .hero-logo-star-4 {
+  aspect-ratio: 102 / 116;
+  background-image: url("assets/hero-star-4.webp");
+}
+#top .hero-logo-assembly .hero-logo-star-5 {
+  aspect-ratio: 78 / 90;
+  background-image: url("assets/hero-star-5.webp");
+}
