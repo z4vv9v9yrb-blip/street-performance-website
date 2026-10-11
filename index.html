@@ -10,7 +10,14 @@
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&family=Oswald:wght@400;500;600;700&display=swap" rel="stylesheet">
-  <link rel="stylesheet" href="style.css?v=goldene-headerlinie-20261011">
+  <link rel="stylesheet" href="style.css?v=goldene-headerlinie-fix-20261011-2">
+  <style id="sp-gold-header-line">
+    /* Fix: Headerlinie immer in Street-Performance-Gold, auch bei altem CSS im Cache. */
+    .site-header::before {
+      background: linear-gradient(90deg, #b69556 0%, #e8cc90 48%, #c8a86e 100%) !important;
+      background-color: #c8a86e !important;
+    }
+  </style>
 </head>
 <body>
   <a class="skip-link" href="#service">Zum Inhalt springen</a>
