@@ -2754,3 +2754,44 @@ img{display:block;max-width:100%}
 @media (prefers-reduced-motion: reduce) {
   .site-header { transition: none; }
 }
+
+
+/* NAVIGATION ÜBER DEM HERO – am Seitenanfang kein eigener Balken.
+   Header bleibt sticky; per negativem Aussenabstand beginnt das Hero-Bild
+   direkt dahinter. Die Hero-Inhalte behalten ihren bisherigen Abstand.
+   Beim Scrollen schaltet das vorhandene JS .is-scrolled zu und zeigt wieder
+   die matte, transparente Carbon-Leiste mit Blur. */
+:root { --sp-header-overlay-height: 106px; }
+.site-header {
+  margin-bottom: calc(-1 * var(--sp-header-overlay-height));
+}
+#top.intro-banner.hero-split {
+  padding-top: var(--sp-header-overlay-height);
+}
+.site-header:not(.is-scrolled) {
+  background: transparent;
+  background-color: transparent;
+  background-image: none;
+  border-bottom-color: transparent;
+  box-shadow: none;
+  -webkit-backdrop-filter: none;
+  backdrop-filter: none;
+}
+.site-header:not(.is-scrolled)::after {
+  background: none;
+  opacity: 0;
+}
+.site-header:not(.is-scrolled) .main-nav a,
+.site-header:not(.is-scrolled) .site-wordmark {
+  text-shadow: 0 2px 12px rgba(0,0,0,.58);
+}
+@media (min-width: 761px) and (max-width: 1080px) {
+  :root { --sp-header-overlay-height: 88px; }
+}
+@media (max-width: 760px) {
+  :root { --sp-header-overlay-height: 75px; }
+  /* Das mobile Dropdown hat weiterhin seinen eigenen dunklen Hintergrund. */
+  .site-header:not(.is-scrolled) .main-nav {
+    text-shadow: none;
+  }
+}
