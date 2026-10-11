@@ -1,31 +1,33 @@
-<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 48 48" width="48" height="48">
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 40 40" width="40" height="40">
   <defs>
-    <linearGradient id="warp" x1="0" y1="0" x2="1" y2="1">
-      <stop offset="0" stop-color="#050708"/>
-      <stop offset=".18" stop-color="#13171a"/>
-      <stop offset=".37" stop-color="#353c3f"/>
-      <stop offset=".52" stop-color="#252b2f"/>
-      <stop offset=".78" stop-color="#0a0d0f"/>
-      <stop offset="1" stop-color="#050607"/>
+    <linearGradient id="carbonA" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0" stop-color="#06090b"/>
+      <stop offset=".09" stop-color="#0d1115"/>
+      <stop offset=".30" stop-color="#4b5156"/>
+      <stop offset=".41" stop-color="#686f73"/>
+      <stop offset=".55" stop-color="#343b40"/>
+      <stop offset=".76" stop-color="#121618"/>
+      <stop offset="1" stop-color="#060809"/>
     </linearGradient>
-    <linearGradient id="weft" x1="0" y1="1" x2="1" y2="0">
-      <stop offset="0" stop-color="#030506"/>
-      <stop offset=".22" stop-color="#20262a"/>
-      <stop offset=".42" stop-color="#3b4346"/>
-      <stop offset=".53" stop-color="#1b2225"/>
-      <stop offset=".82" stop-color="#080b0e"/>
-      <stop offset="1" stop-color="#030506"/>
+    <linearGradient id="carbonB" x1="1" y1="0" x2="0" y2="1">
+      <stop offset="0" stop-color="#050709"/>
+      <stop offset=".20" stop-color="#0f1316"/>
+      <stop offset=".41" stop-color="#343d42"/>
+      <stop offset=".54" stop-color="#505960"/>
+      <stop offset=".68" stop-color="#282e32"/>
+      <stop offset=".84" stop-color="#080b0e"/>
+      <stop offset="1" stop-color="#050709"/>
     </linearGradient>
-    <pattern id="twill" patternUnits="userSpaceOnUse" width="24" height="24" patternTransform="rotate(-43)">
-      <rect width="24" height="24" fill="#080a0c"/>
-      <rect width="11.7" height="11.7" rx=".8" fill="url(#warp)"/>
-      <rect x="12" y="12" width="11.7" height="11.7" rx=".8" fill="url(#warp)"/>
-      <rect x="12" width="11.7" height="11.7" rx=".8" fill="url(#weft)"/>
-      <rect y="12" width="11.7" height="11.7" rx=".8" fill="url(#weft)"/>
-      <path d="M1 1h9.3M13 13h9.3" stroke="#b0bec0" stroke-opacity=".065" stroke-width=".65"/>
-      <path d="M13 1v9.3M1 13v9.3" stroke="#a8b6b6" stroke-opacity=".07" stroke-width=".65"/>
-      <path d="M0 11.9h24M11.9 0v24" stroke="#010203" stroke-opacity=".65" stroke-width=".45"/>
+    <pattern id="carbon" width="20" height="20" patternUnits="userSpaceOnUse" patternTransform="rotate(-41)">
+      <rect width="20" height="20" fill="#07090a"/>
+      <rect x=".45" y=".45" width="9.1" height="9.1" rx=".55" fill="url(#carbonA)"/>
+      <rect x="10.45" y="10.45" width="9.1" height="9.1" rx=".55" fill="url(#carbonA)"/>
+      <rect x="10.45" y=".45" width="9.1" height="9.1" rx=".55" fill="url(#carbonB)"/>
+      <rect x=".45" y="10.45" width="9.1" height="9.1" rx=".55" fill="url(#carbonB)"/>
+      <path d="M1.25 1.5h7.6 M11.3 11.5h7.6" stroke="#d2d9d8" stroke-opacity=".18" stroke-width=".65"/>
+      <path d="M11.3 1.3v7.7 M1.3 11.3v7.7" stroke="#bcc9cd" stroke-opacity=".16" stroke-width=".65"/>
+      <path d="M.25 9.92h19.6 M9.93 .2v19.6" stroke="#020405" stroke-opacity=".8" stroke-width=".7"/>
     </pattern>
   </defs>
-  <rect width="48" height="48" fill="url(#twill)"/>
+  <rect width="40" height="40" fill="url(#carbon)"/>
 </svg>
