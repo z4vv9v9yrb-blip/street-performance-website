@@ -243,6 +243,51 @@
     counts.forEach(el => numberObserver.observe(el));
   }
 
+
+  // ECU video: user-initiated playback WITH SOUND, with a native volume slider.
+  // Browsers prohibit automatic playback with sound; do not autoplay or mute it.
+  const ecuVideo = document.getElementById('ecuVideo');
+  const ecuVideoPlay = document.getElementById('ecuVideoPlay');
+  const ecuVideoFrame = document.getElementById('ecuVideoFrame');
+  const ecuVideoError = document.getElementById('ecuVideoError');
+  if (ecuVideo && ecuVideoPlay && ecuVideoFrame) {
+    ecuVideo.muted = false;
+    ecuVideoPlay.addEventListener('click', () => {
+      ecuVideo.muted = false;
+      const playback = ecuVideo.play();
+      if (playback && typeof playback.catch === 'function') {
+        playback.catch(() => {
+          // Retain browser controls so users can retry even if their browser blocked play.
+          ecuVideoPlay.hidden = true;
+        });
+      }
+    });
+    ecuVideo.addEventListener('playing', () => {
+      ecuVideoFrame.classList.add('is-playing');
+      ecuVideoPlay.hidden = true;
+    });
+    ecuVideo.addEventListener('pause', () => {
+      ecuVideoFrame.classList.remove('is-playing');
+      if (!ecuVideo.error) ecuVideoPlay.hidden = false;
+    });
+    ecuVideo.addEventListener('ended', () => {
+      ecuVideoFrame.classList.remove('is-playing');
+      ecuVideoPlay.hidden = false;
+    });
+    const showVideoError = () => {
+      ecuVideoPlay.hidden = true;
+      ecuVideoFrame.classList.add('has-error');
+      if (ecuVideoError) ecuVideoError.hidden = false;
+    };
+    ecuVideo.addEventListener('error', showVideoError);
+    ecuVideo.querySelector('source')?.addEventListener('error', () => {
+      // Wait for the media element to settle before showing fallback.
+      window.setTimeout(() => {
+        if (ecuVideo.error) showVideoError();
+      }, 0);
+    });
+  }
+
   // Section-aware navigation.
   const sections = [...document.querySelectorAll('main section[id]')];
   if ('IntersectionObserver' in window && nav) {
