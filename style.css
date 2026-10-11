@@ -2892,3 +2892,74 @@ html body > header.site-header::before {
     background-position: center 58%, center;
   }
 }
+
+
+/* Smartphone-Feinschliff 2026-10-11: 320px bis 760px, ohne Desktop-Eingriffe */
+@media (max-width: 760px) {
+  html { scroll-padding-top: 82px; }
+  body { min-width: 0; }
+  .layout, #top .hero-split-grid, #dyno .dyno-layout,
+  .explore-hub .explore-wrap {
+    width: calc(100% - 36px);
+    max-width: 100%;
+    margin-inline: auto;
+  }
+  main, main > section, .site-header, .header-inner { min-width: 0; }
+  main img, main video, main iframe { max-width: 100%; }
+  main iframe { display: block; }
+  .site-header .header-inner.layout { width: calc(100% - 32px); gap: 8px; }
+  .site-header .site-brand { min-width: 0; flex: 1 1 auto; overflow: hidden; }
+  .site-header .site-brand .site-wordmark { min-width: 0; }
+  .site-header .menu-button { flex: 0 0 46px; min-width: 46px; min-height: 46px; touch-action: manipulation; }
+  .header-appointment { flex-shrink: 0; min-height: 44px; }
+  .main-nav { max-height: calc(100dvh - 75px); overflow-y: auto; overscroll-behavior: contain; }
+  .main-nav a { min-height: 44px; display: flex; align-items: center; }
+  #top.intro-banner.hero-split { min-height: 0; height: auto; }
+  #top .hero-split-grid { min-width: 0; }
+  #top .hero-message, #top .hero-identity { min-width: 0; }
+  #top .hero-message h1 { overflow-wrap: normal; font-size: clamp(36px, 9.3vw, 68px); }
+  .section-intro h2, .detail-section h2, #dyno .dyno-content h2 {
+    overflow-wrap: break-word;
+  }
+  .primary-cta, .outline-cta { min-height: 48px; max-width: 100%; }
+  .quick-services-grid, .explore-hub .explore-grid { min-width: 0; }
+  .quick-services-grid a { min-width: 0; }
+  .feature-photo, .engine-compare, .ecu-video-frame, .dyno-youtube-card { max-width: 100%; }
+  input, select, textarea, button { max-width: 100%; }
+  input, select, textarea { font-size: 16px; }
+}
+@media (max-width: 520px) {
+  .layout, #top .hero-split-grid, #dyno .dyno-layout,
+  .explore-hub .explore-wrap { width: calc(100% - 30px); }
+  .site-header .header-inner.layout { width: calc(100% - 24px); }
+  #top .hero-split-grid { padding-top: 48px; padding-bottom: 42px; gap: 17px; }
+  #top .hero-message h1 { font-size: clamp(35px, 9.15vw, 48px); line-height: 1.04; letter-spacing: -.035em; }
+  #top .hero-message > p { font-size: 13px; }
+  #top .hero-identity { width: min(100%, 340px); margin-inline: auto; }
+  .section-intro h2 { font-size: clamp(32px, 8.4vw, 43px); }
+  .detail-section { padding-block: 56px 62px; }
+  .quick-services-grid { grid-template-columns: repeat(2, minmax(0,1fr)); }
+  .quick-services-grid a { min-height: 84px; }
+  .explore-hub .explore-social { min-width: 0; }
+  .explore-hub .explore-social-copy { min-width: 0; }
+  .explore-hub .explore-social-copy strong { font-size: clamp(19px, 6vw, 26px); }
+}
+@media (max-width: 375px) {
+  .site-header .site-brand .sp-shield-logo { width: 40px; min-width: 40px; max-width: 40px; height: 49px; }
+  .site-header .site-brand { gap: 3px; }
+  .site-wordmark strong { font-size: 17px; }
+  .site-wordmark small { font-size: 5px; letter-spacing: .08em; }
+  .header-appointment { width: 40px; min-width: 40px; padding: 0; font-size: 0; }
+  .header-appointment span { font-size: 19px; }
+  #top .hero-message h1 { font-size: clamp(31px, 9.2vw, 35px); }
+  #top .hero-message .eyebrow { font-size: 8px; letter-spacing: .055em; }
+  #dyno .dyno-content h2 { font-size: clamp(36px, 10.4vw, 48px); }
+  .quick-services-grid strong { font-size: 17px; }
+}
+@media (max-width: 340px) {
+  .site-header .header-inner.layout { width: calc(100% - 16px); gap: 5px; }
+  .site-wordmark strong { font-size: 15px; }
+  .menu-button { width: 42px; min-width: 42px; flex-basis: 42px; }
+  #top .hero-message h1 { font-size: 29px; }
+  .quick-services-grid { grid-template-columns: 1fr 1fr; }
+}
