@@ -305,6 +305,44 @@
       const submitButton = form && form.querySelector('button[type="submit"]');
       if (!form || !feedback || !submitButton) return;
 
+      // Prefill the editable message according to the inquiry button clicked
+      // on the main site. A direct visit to termin.html stays empty.
+      const inquiryTemplates = {
+        service: {
+          subject: "Neue Service-Anfrage – Street Performance",
+          message: "Guten Tag,\n\nich möchte gerne einen Termin für einen Fahrzeugservice vereinbaren. Bitte kontaktieren Sie mich für die weiteren Details.\n\nFreundliche Grüsse"
+        },
+        tuning: {
+          subject: "Neue Tuning-Anfrage – Street Performance",
+          message: "Guten Tag,\n\nich interessiere mich für ein Tuning meines Fahrzeugs und möchte gerne einen Beratungstermin vereinbaren.\n\nFreundliche Grüsse"
+        },
+        ecu: {
+          subject: "Neue ECU-Anfrage – Street Performance",
+          message: "Guten Tag,\n\nich interessiere mich für eine ECU-Kennfeldoptimierung und möchte gerne einen Termin für eine Beratung und Abstimmung vereinbaren.\n\nFreundliche Grüsse"
+        },
+        dyno: {
+          subject: "Neue Leistungsmessungs-Anfrage – Street Performance",
+          message: "Guten Tag,\n\nich möchte gerne einen Termin für eine Leistungsmessung auf dem Mainline-Prüfstand vereinbaren.\n\nFreundliche Grüsse"
+        },
+        mfk: {
+          subject: "Neue MFK-Anfrage – Street Performance",
+          message: "Guten Tag,\n\nich möchte gerne einen Termin zur Vorbereitung beziehungsweise Beratung für die Motorfahrzeugkontrolle (MFK) vereinbaren.\n\nFreundliche Grüsse"
+        }
+      };
+      const requestedInquiry = new URLSearchParams(window.location.search).get("anfrage");
+      const selectedTemplate = Object.prototype.hasOwnProperty.call(inquiryTemplates, requestedInquiry)
+        ? inquiryTemplates[requestedInquiry]
+        : null;
+      if (selectedTemplate) {
+        const messageField = form.elements.namedItem("message");
+        const subjectField = form.elements.namedItem("_subject");
+        if (messageField && !messageField.value.trim()) {
+          messageField.value = selectedTemplate.message;
+        }
+        if (subjectField) subjectField.value = selectedTemplate.subject;
+      }
+
+
       form.addEventListener("submit", async (event) => {
         // Stay on the same page instead of navigating to FormSubmit's thank-you page.
         event.preventDefault();
