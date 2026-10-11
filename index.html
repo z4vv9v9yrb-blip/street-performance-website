@@ -10,7 +10,7 @@
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&family=Oswald:wght@400;500;600;700&display=swap" rel="stylesheet">
-  <link rel="stylesheet" href="style.css?v=dyno-video-mit-ton-20261011">
+  <link rel="stylesheet" href="style.css?v=dyno-youtube-seite-20261011">
 </head>
 <body>
   <a class="skip-link" href="#service">Zum Inhalt springen</a>
@@ -179,33 +179,43 @@
       </div>
     </section>
 
-    <section class="dyno-section" id="dyno">
-      <div class="dyno-image dyno-video-media">
-        <video id="dynoBackgroundVideo" class="dyno-video" playsinline preload="none" loop poster="assets/tuning-vorher-nachher.webp" aria-label="Street Performance Leistungsmessung – Video mit Ton">
-          <source src="https://street-performance.ch/wp-content/uploads/2021/08/WhatsApp-Video-2021-08-05-at-17.39.27.mp4" type="video/mp4">
-          Dein Browser unterstützt dieses Video nicht.
-        </video>
-      </div>
-      <div class="dyno-shade"></div>
-      <div class="dyno-video-controls" aria-label="Videosteuerung">
-        <button id="dynoVideoToggle" class="dyno-video-toggle" type="button" aria-controls="dynoBackgroundVideo" aria-label="Video mit Ton starten">
-          <span class="dyno-video-toggle-icon" id="dynoToggleIcon" aria-hidden="true">▶</span>
-          <span id="dynoToggleLabel">VIDEO MIT TON STARTEN</span>
-        </button>
-        <button id="dynoVideoSound" class="dyno-video-sound" type="button" aria-controls="dynoBackgroundVideo" aria-label="Ton ausschalten" hidden>
-          <span id="dynoSoundIcon" aria-hidden="true">♫</span>
-        </button>
-        <div id="dynoVideoError" class="dyno-video-error" role="status" hidden>Video nicht verfügbar. <a href="https://street-performance.ch/wp-content/uploads/2021/08/WhatsApp-Video-2021-08-05-at-17.39.27.mp4" target="_blank" rel="noopener noreferrer">Direkt öffnen ↗</a></div>
-      </div>
-      <div class="layout dyno-content">
-        <span class="section-index reveal">04 / MAINLINE-LEISTUNGSPRÜFSTAND</span>
-        <h2 class="reveal">Leistungs<em>messung.</em></h2>
-        <p class="reveal">Messungen und Abstimmungen auf unserem Mainline-Prüfstand bieten eine fundierte Grundlage für Entwicklung, Diagnose und gezielte Optimierung.</p>
-        <div class="dyno-stats reveal">
-          <div><strong><span class="count-up" data-target="3000" data-format="grouped">3'000</span><small> PS</small></strong><span>Max. Messbereich</span></div>
-          <div><strong><span class="count-up" data-target="500">500</span><small> km/h</small></strong><span>Max. Geschwindigkeit</span></div>
+    <section class="dyno-section dyno-split-section" id="dyno">
+      <div class="layout dyno-layout">
+        <div class="dyno-content">
+          <span class="section-index reveal">04 / MAINLINE-LEISTUNGSPRÜFSTAND</span>
+          <h2 class="reveal">Leistungs<em>messung.</em></h2>
+          <p class="reveal">Messungen und Abstimmungen auf unserem Mainline-Prüfstand bieten eine fundierte Grundlage für Entwicklung, Diagnose und gezielte Optimierung.</p>
+          <div class="dyno-stats reveal">
+            <div><strong><span class="count-up" data-target="3000" data-format="grouped">3'000</span><small> PS</small></strong><span>Max. Messbereich</span></div>
+            <div><strong><span class="count-up" data-target="500">500</span><small> km/h</small></strong><span>Max. Geschwindigkeit</span></div>
+          </div>
+          <a href="#kontakt" class="primary-cta reveal">Leistungsmessung anfragen <span>↗</span></a>
         </div>
-        <a href="#kontakt" class="primary-cta reveal">Leistungsmessung anfragen <span>↗</span></a>
+
+        <aside class="dyno-youtube-card reveal" aria-label="Leistungsprüfstand Video">
+          <div class="dyno-video-heading">
+            <span><span class="dyno-status-dot" aria-hidden="true"></span> VIDEO / LEISTUNGSPRÜFSTAND</span>
+            <span class="dyno-video-heading-mark" aria-hidden="true">↗</span>
+          </div>
+          <div class="dyno-youtube-frame">
+            <iframe
+              src="https://www.youtube-nocookie.com/embed/HuKTMHhM7Qc?rel=0&amp;playsinline=1"
+              title="T1 Race New Dyno Record – Leistungsprüfstand Video mit Ton"
+              loading="lazy"
+              allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+              referrerpolicy="strict-origin-when-cross-origin"
+              allowfullscreen>
+            </iframe>
+          </div>
+          <div class="dyno-video-caption">
+            <div>
+              <span>STREET PERFORMANCE / DYNO</span>
+              <h3>T1 Race New Dyno Record</h3>
+              <p>Zum Abspielen mit Ton auf ▶ klicken.</p>
+            </div>
+            <a href="https://www.youtube.com/watch?v=HuKTMHhM7Qc" target="_blank" rel="noopener noreferrer" aria-label="T1 Race New Dyno Record auf YouTube ansehen">↗</a>
+          </div>
+        </aside>
       </div>
     </section>
 
@@ -283,6 +293,6 @@
     </div>
     <div class="layout footer-bottom"><span>© Real Street Performance GmbH. Alle Rechte vorbehalten.</span><a href="#top">Nach oben ↑</a></div>
   </footer>
-  <script src="script.js?v=dyno-video-mit-ton-20261011" defer></script>
+  <script src="script.js?v=dyno-youtube-seite-20261011" defer></script>
 </body>
 </html>
