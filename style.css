@@ -2963,3 +2963,72 @@ html body > header.site-header::before {
   #top .hero-message h1 { font-size: 29px; }
   .quick-services-grid { grid-template-columns: 1fr 1fr; }
 }
+
+
+/* Mobile menu — feine Gold-Icons statt Pfeilen; Desktop-Navigation unverändert. */
+.site-header .main-nav .nav-icon { display: none; }
+@media (max-width: 760px) {
+  .site-header .main-nav {
+    padding: 15px max(15px, calc((100vw - 520px) / 2)) calc(20px + env(safe-area-inset-bottom, 0px));
+  }
+  .site-header .main-nav a {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    min-height: 68px;
+    padding: 11px 9px;
+    font-size: clamp(21px, 6.2vw, 24px);
+    line-height: 1.18;
+    border-bottom: 1px solid rgba(255,255,255,.085);
+  }
+  .site-header .main-nav a::before {
+    flex: 0 0 30px;
+    width: 30px;
+    font-size: 10px;
+    letter-spacing: .09em;
+  }
+  /* Alte Pfeil-Pseudoelemente in dieser Ansicht komplett ersetzen. */
+  .site-header .main-nav a::after {
+    content: none;
+    display: none;
+  }
+  .site-header .main-nav .nav-icon {
+    display: grid;
+    place-items: center;
+    flex: 0 0 44px;
+    width: 44px;
+    height: 44px;
+    margin-left: auto;
+    border: 1px solid rgba(200,168,110,.35);
+    border-radius: 11px;
+    color: #dbc08d;
+    background: linear-gradient(145deg,rgba(200,168,110,.11),rgba(200,168,110,.035));
+    box-shadow: inset 0 1px 0 rgba(255,255,255,.045);
+    transition: border-color .25s ease, background .25s ease,
+                color .25s ease, transform .3s cubic-bezier(.22,1,.36,1);
+  }
+  .site-header .main-nav .nav-icon svg {
+    display: block;
+    width: 22px;
+    height: 22px;
+    flex: none;
+  }
+  .site-header .main-nav a:hover .nav-icon,
+  .site-header .main-nav a:focus-visible .nav-icon,
+  .site-header .main-nav a.active .nav-icon {
+    color: #f2d49e;
+    background: rgba(200,168,110,.17);
+    border-color: rgba(224,190,128,.78);
+    transform: translateY(-2px);
+  }
+}
+@media (max-width: 360px) {
+  .site-header .main-nav { padding-inline: 12px; }
+  .site-header .main-nav a { gap: 9px; min-height: 62px; font-size: 20px; padding-inline: 7px; }
+  .site-header .main-nav a::before { flex-basis: 26px; width: 26px; }
+  .site-header .main-nav .nav-icon { flex-basis: 40px; width: 40px; height: 40px; }
+  .site-header .main-nav .nav-icon svg { width: 21px; height: 21px; }
+}
+@media (prefers-reduced-motion: reduce) {
+  .site-header .main-nav .nav-icon { transition: none; }
+}
