@@ -2847,3 +2847,75 @@ html body > header.site-header::before {
   content: none !important;
   display: none !important;
 }
+
+
+/* ========== SERVICE: SCROLL-GESTEUERTER ÖLWECHSEL ========== 
+   Vier passende schwarz-weisse Original-Keyframes als ein WebP-Spritesheet.
+   Kein Video-Autoplay: Vorwärts und rückwärts scrollen steuert den Ölfluss. */
+#service .service-oil-scroll {
+  position: sticky;
+  top: clamp(92px,12vh,138px);
+  align-self: start;
+  margin: 0;
+  overflow: hidden;
+  min-height: 400px;
+  aspect-ratio: 1.13;
+  background: #090a0b;
+  border: 1px solid rgba(200,168,110,.19);
+  border-radius: 8px;
+  box-shadow: 0 20px 58px rgba(0,0,0,.23);
+  isolation: isolate;
+}
+#service .oil-scroll-stage {
+  position: absolute;
+  inset: 0;
+  overflow: hidden;
+  background: #090a0b;
+}
+#service .oil-scroll-frame {
+  position: absolute;
+  inset: 0;
+  display: block;
+  background-image: url("assets/sp-service-oil-scroll-4frames.webp");
+  background-repeat: no-repeat;
+  background-size: auto 400%;
+  background-position: center 0%;
+  will-change: opacity;
+  pointer-events: none;
+}
+#service .oil-scroll-frame-b {
+  background-position: center 33.333333%;
+  opacity: 0;
+}
+#service .oil-scroll-progress {
+  position: absolute;
+  z-index: 2;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  height: 3px;
+  background: rgba(255,255,255,.12);
+  pointer-events: none;
+}
+#service .oil-scroll-progress span {
+  display: block;
+  width: 100%;
+  height: 100%;
+  background: linear-gradient(90deg,#967446,#d8b77d);
+  transform: scaleX(0);
+  transform-origin: left center;
+  will-change: transform;
+}
+@media(max-width:760px) {
+  #service .service-oil-scroll {
+    position: relative;
+    top: auto;
+    width: 100%;
+    min-height: 0;
+    aspect-ratio: 1.16;
+  }
+}
+@media(prefers-reduced-motion:reduce) {
+  #service .oil-scroll-frame {will-change:auto;}
+  #service .oil-scroll-progress span {will-change:auto;}
+}
