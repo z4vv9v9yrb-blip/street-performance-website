@@ -2027,3 +2027,58 @@ img{display:block;max-width:100%}
   .explore-hub .explore-shop-logo img,.explore-hub .explore-outbound,
   .explore-hub .explore-social-arrow { transition: none; }
 }
+
+
+/* SP-Logo / 3D Maus-Tracking: bleibt an Ort und Stelle, neigt sich zur Maus. */
+#top .hero-identity {
+  perspective: 1250px;
+  perspective-origin: 50% 46%;
+  -webkit-user-select: none;
+  user-select: none;
+  touch-action: pan-y;
+  transform-style: preserve-3d;
+}
+#top .hero-logo-assembly {
+  transform-style: preserve-3d;
+  transform-origin: center center;
+  transform:
+    perspective(1100px)
+    rotateX(var(--logo-rotate-x, 0deg))
+    rotateY(var(--logo-rotate-y, 0deg))
+    translate3d(var(--logo-shift-x, 0px), var(--logo-shift-y, 0px), 0px);
+  backface-visibility: hidden;
+  -webkit-backface-visibility: hidden;
+}
+#top .hero-identity::after {
+  content: "";
+  position: absolute;
+  z-index: -1;
+  inset: 8%;
+  pointer-events: none;
+  background: radial-gradient(
+    ellipse at var(--logo-light-x, 50%) var(--logo-light-y, 45%),
+    rgba(226,189,113,.18), transparent 63%
+  );
+  filter: blur(38px);
+  opacity: .7;
+}
+#top .hero-logo-assembly .hero-logo-base {
+  transform: translateZ(0);
+  backface-visibility: hidden;
+}
+#top .hero-logo-assembly .hero-logo-star {
+  --star-3d-depth: 36px;
+  backface-visibility: hidden;
+  transform-style: preserve-3d;
+}
+/* Stern-Einblendung weiterhin nacheinander, nun leicht vor dem Wappen. */
+@keyframes hero-star-appear {
+  0% { opacity: 0; transform: translate3d(0,9px,0) scale(.35) rotate(-13deg); filter: brightness(1.65) blur(5px); }
+  60% { opacity: 1; transform: translate3d(0,-2px,var(--star-3d-depth)) scale(1.12) rotate(1deg); filter: brightness(1.17) blur(0); }
+  100% { opacity: 1; transform: translate3d(0,0,var(--star-3d-depth)) scale(1) rotate(0); filter: none; }
+}
+@media (prefers-reduced-motion: reduce) {
+  #top .hero-logo-assembly { transform: none !important; }
+  #top .hero-identity::after { opacity: .25; }
+  #top .hero-logo-assembly .hero-logo-star { transform: none !important; }
+}
