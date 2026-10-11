@@ -2840,3 +2840,10 @@ html body > header.site-header.is-scrolled::after {
 @media (prefers-reduced-motion: reduce) {
   html body > header.site-header { transition: none; }
 }
+
+
+/* Header-Zierstreifen dauerhaft entfernen: oben und beim Scrollen. */
+html body > header.site-header::before {
+  content: none !important;
+  display: none !important;
+}
