@@ -1049,3 +1049,128 @@ img{display:block;max-width:100%}
 @media(max-width:450px) {
   #tuning .tuning-comparison { aspect-ratio: 1.75; }
 }
+
+
+
+/* ECU video player — sound-enabled on user click, native playback controls. */
+#ecu .ecu-video-feature {
+  margin: 0;
+  aspect-ratio: auto;
+  min-height: 0;
+  overflow: visible;
+  background: transparent;
+  border-radius: 0;
+}
+#ecu .ecu-video-frame {
+  position: relative;
+  isolation: isolate;
+  width: 100%;
+  aspect-ratio: 16 / 10;
+  background: #080a0d;
+  border: 1px solid rgba(200,168,110,.27);
+  border-radius: 13px;
+  overflow: hidden;
+  box-shadow: 0 22px 65px rgba(0,0,0,.3);
+}
+#ecu .ecu-video {
+  display: block;
+  width: 100%;
+  height: 100%;
+  object-fit: contain;
+  background: #07080a;
+  border: 0;
+  filter: none;
+  transform: none;
+  transition: none;
+}
+#ecu .ecu-video-frame:hover .ecu-video { transform: none; }
+#ecu .ecu-video-play {
+  position: absolute;
+  z-index: 2;
+  inset: 0;
+  border: 0;
+  background: linear-gradient(to bottom, rgba(6,8,9,.24) 0%,rgba(6,8,9,.05) 34%,rgba(6,8,9,.23) 100%);
+  color: #fff;
+  display: flex;
+  gap: 14px;
+  align-items: center;
+  justify-content: center;
+  flex-direction: column;
+  cursor: pointer;
+  font: 700 11px/1.4 "DM Sans",Arial,sans-serif;
+  letter-spacing: .14em;
+  transition: background .3s ease, opacity .35s ease;
+}
+#ecu .ecu-video-play[hidden] { display: none !important; }
+#ecu .ecu-video-play:hover {
+  background: linear-gradient(to bottom, rgba(6,8,9,.18),rgba(6,8,9,.12),rgba(6,8,9,.36));
+}
+#ecu .ecu-play-disc {
+  display: grid;
+  place-items: center;
+  width: 88px;
+  height: 88px;
+  border: 1px solid rgba(255,255,255,.62);
+  border-radius: 50%;
+  background: rgba(200,168,110,.95);
+  box-shadow: 0 14px 42px rgba(0,0,0,.45);
+  font: 600 29px/1 "DM Sans",Arial,sans-serif;
+  color: #101112;
+  padding-left: 5px;
+  transition: transform .4s cubic-bezier(.22,1,.36,1),background .35s;
+}
+#ecu .ecu-video-play:hover .ecu-play-disc {
+  transform: scale(1.08);
+  background: #e5c58b;
+}
+#ecu .ecu-video-frame.is-playing .ecu-video-play { display: none; }
+#ecu .ecu-video-error[hidden] { display: none !important; }
+#ecu .ecu-video-error {
+  position: absolute;
+  z-index: 3;
+  inset: 0;
+  padding: 28px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 9px;
+  background: rgba(9,10,12,.95);
+  color: #ececed;
+  text-align: center;
+  font-size: 13px;
+}
+#ecu .ecu-video-error strong {
+  font: 500 24px/1.15 "Oswald",Arial,sans-serif;
+  color: #fff;
+  text-transform: uppercase;
+}
+#ecu .ecu-video-error span { color: #b5b6b8; }
+#ecu .ecu-video-error a {
+  margin-top: 12px;
+  color: #e5c58b;
+  border-bottom: 1px solid rgba(229,197,139,.5);
+  padding-bottom: 3px;
+}
+#ecu .ecu-video-caption {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 14px;
+  margin: 12px 2px 0;
+  color: rgba(235,235,235,.6);
+  font: 650 10px/1.5 "DM Sans",Arial,sans-serif;
+  letter-spacing: .09em;
+}
+#ecu .ecu-video-caption span:last-child { color: #c8a86e; }
+@media (max-width:760px) {
+  #ecu .ecu-video-frame { aspect-ratio: 16 / 10; }
+  #ecu .ecu-play-disc { width: 72px; height: 72px; font-size: 24px; }
+}
+@media (max-width:420px) {
+  #ecu .ecu-video-frame { aspect-ratio: 16 / 11; }
+  #ecu .ecu-video-caption { font-size: 9px; letter-spacing: .035em; }
+}
+@media (prefers-reduced-motion:reduce) {
+  #ecu .ecu-video-play,#ecu .ecu-play-disc { transition: none; }
+}
