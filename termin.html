@@ -562,15 +562,27 @@
             : "";
           let body = messageField.value;
 
-          // Ersetze nur die automatisch erzeugten Auswahlzeilen,
-          // nicht die vom Kunden selbst eingegebenen Angaben.
-          if (previousBlock && body.startsWith(previousBlock)) {
-            body = body.slice(previousBlock.length);
+          // Nur die automatisch erzeugten Auswahlzeilen ersetzen.
+          // Frei getippter Nachrichtentext bleibt erhalten.
+          if (previousBlock && body.includes(previousBlock)) {
+            body = body.replace(previousBlock, "");
           } else {
-            const matchedBlock = body.match(/^Gewünschte Leistungen:\n(?:• [^\n]*\n)+\n?/);
-            if (matchedBlock) body = body.slice(matchedBlock[0].length);
+            body = body.replace(
+              /^(Guten Tag,\n\n)Gewünschte Leistungen:\n(?:• [^\n]*\n)+\n?/,
+              "$1"
+            );
           }
-          messageField.value = nextBlock + body;
+
+          // Die Auswahl steht bei allen Anfragearten unter "Guten Tag,".
+          const greeting = "Guten Tag,\n\n";
+          if (body.startsWith(greeting)) {
+            messageField.value = greeting + nextBlock + body.slice(greeting.length);
+          } else {
+            const greetingLine = body.match(/^Guten Tag,\n+/);
+            messageField.value = greetingLine
+              ? greetingLine[0] + nextBlock + body.slice(greetingLine[0].length)
+              : nextBlock + body;
+          }
           previousBlock = nextBlock;
           if (subjectField) {
             subjectField.value = selected.length
