@@ -395,58 +395,6 @@
   }
 
 
-
-
-  // Service: die Ölkanne und der Ölfluss werden durch Scrollen vorwärts
-  // und rückwärts animiert (vier echte schwarz-weisse Bildphasen).
-  const oilStage = document.querySelector('#service [data-oil-scroll]');
-  if (oilStage) {
-    const firstOilFrame = oilStage.querySelector('.oil-scroll-frame-a');
-    const nextOilFrame = oilStage.querySelector('.oil-scroll-frame-b');
-    const oilProgress = oilStage.querySelector('.oil-scroll-progress span');
-    const oilSection = oilStage.closest('.feature-two-col');
-    let oilTickQueued = false;
-
-    const clampOil = value => Math.max(0, Math.min(1, value));
-    const renderOilScroll = () => {
-      oilTickQueued = false;
-      if (!firstOilFrame || !nextOilFrame || !oilSection) return;
-      let progress;
-      if (reduceMotion.matches) {
-        progress = 1;
-      } else {
-        const rect = oilSection.getBoundingClientRect();
-        const startLine = window.innerHeight * .85;
-        const scrollDistance = Math.max(window.innerHeight * .88, rect.height * 1.10);
-        progress = clampOil((startLine - rect.top) / scrollDistance);
-      }
-
-      const timeline = progress * 3;
-      const firstIndex = Math.min(2, Math.floor(timeline));
-      const nextIndex = firstIndex + 1;
-      const blend = clampOil(timeline - firstIndex);
-
-      firstOilFrame.style.backgroundPosition = 'center ' + (firstIndex / 3 * 100).toFixed(6) + '%';
-      nextOilFrame.style.backgroundPosition = 'center ' + (nextIndex / 3 * 100).toFixed(6) + '%';
-      nextOilFrame.style.opacity = blend.toFixed(3);
-      if (oilProgress) oilProgress.style.transform = 'scaleX(' + progress.toFixed(3) + ')';
-    };
-
-    const requestOilScroll = () => {
-      if (oilTickQueued) return;
-      oilTickQueued = true;
-      window.requestAnimationFrame(renderOilScroll);
-    };
-
-    renderOilScroll();
-    window.addEventListener('scroll', requestOilScroll, { passive: true });
-    window.addEventListener('resize', requestOilScroll, { passive: true });
-    window.addEventListener('pageshow', requestOilScroll);
-    if (reduceMotion.addEventListener) {
-      reduceMotion.addEventListener('change', requestOilScroll);
-    }
-  }
-
   // Tuning: zugänglicher Vorher/Nachher-Schieberegler für Maus, Touch und Tastatur.
   document.querySelectorAll('.engine-compare').forEach(compare => {
     const slider = compare.querySelector('.engine-compare-range');
