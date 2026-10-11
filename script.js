@@ -2,6 +2,112 @@
 (() => {
   'use strict';
   const reduceMotion = window.matchMedia('(prefers-reduced-motion: reduce)');
+
+  // Hero SP badge: responsive 3D parallax, smoothly tracking the mouse
+  // while staying in the right-hand hero column (never attached to cursor).
+  // Pointer touch gestures give a similar effect on mobile.
+  const heroPanel = document.querySelector('#top.intro-banner.hero-split');
+  const heroBadge = heroPanel?.querySelector('.hero-identity');
+  const heroBadgeScene = heroBadge?.querySelector('.hero-logo-assembly');
+  if (heroPanel && heroBadge && heroBadgeScene) {
+    const finePointer = window.matchMedia('(hover: hover) and (pointer: fine)');
+    const clamp = (value, low, high) => Math.min(high, Math.max(low, value));
+    const current = [0, 0, 0, 0]; // rotateX, rotateY, x-shift, y-shift
+    const target = [0, 0, 0, 0];
+    let raf = 0;
+    let isVisible = true;
+    let fingerIsMovingBadge = false;
+
+    const frame = () => {
+      raf = 0;
+      if (reduceMotion.matches) return;
+
+      let distance = 0;
+      for (let index = 0; index < current.length; index++) {
+        const delta = target[index] - current[index];
+        current[index] += delta * .125; // inertial movement without jump
+        distance = Math.max(distance, Math.abs(delta));
+      }
+
+      heroBadgeScene.style.setProperty('--logo-rotate-x', current[0].toFixed(3) + 'deg');
+      heroBadgeScene.style.setProperty('--logo-rotate-y', current[1].toFixed(3) + 'deg');
+      heroBadgeScene.style.setProperty('--logo-shift-x', current[2].toFixed(2) + 'px');
+      heroBadgeScene.style.setProperty('--logo-shift-y', current[3].toFixed(2) + 'px');
+      heroBadge.style.setProperty('--logo-light-x', (50 + current[1] * 2.1).toFixed(2) + '%');
+      heroBadge.style.setProperty('--logo-light-y', (45 - current[0] * 2.1).toFixed(2) + '%');
+
+      if (distance > .018) raf = window.requestAnimationFrame(frame);
+    };
+    const queue = () => {
+      if (!raf && !reduceMotion.matches) raf = window.requestAnimationFrame(frame);
+    };
+    const neutral = () => {
+      target.fill(0);
+      queue();
+    };
+    const aimAt = (clientX, clientY, bounds, extraTilt = false) => {
+      if (!bounds.width || !bounds.height || reduceMotion.matches) return;
+      const x = clamp((clientX - bounds.left - bounds.width / 2) / (bounds.width / 2), -1, 1);
+      const y = clamp((clientY - bounds.top - bounds.height / 2) / (bounds.height / 2), -1, 1);
+      const strength = extraTilt ? 1.25 : 1;
+      target[0] = -y * 10 * strength;
+      target[1] = x * 13 * strength;
+      target[2] = x * 10;
+      target[3] = y * 7;
+      queue();
+    };
+
+    // Track the mouse over the entire visible page, not just over the logo.
+    // This makes the badge feel visually connected to the cursor.
+    window.addEventListener('pointermove', event => {
+      if (event.pointerType === 'touch' || !finePointer.matches || !isVisible) return;
+      const box = heroPanel.getBoundingClientRect();
+      if (box.bottom < 0 || box.top > window.innerHeight) return;
+      aimAt(event.clientX, event.clientY, box);
+    }, { passive: true });
+
+    // On mobile: drag across the badge to tilt it (vertical scrolling still works).
+    heroBadge.addEventListener('pointerdown', event => {
+      if (event.pointerType !== 'touch' && event.pointerType !== 'pen') return;
+      fingerIsMovingBadge = true;
+      aimAt(event.clientX, event.clientY, heroBadge.getBoundingClientRect(), true);
+    }, { passive: true });
+    heroBadge.addEventListener('pointermove', event => {
+      if (!fingerIsMovingBadge || (event.pointerType !== 'touch' && event.pointerType !== 'pen')) return;
+      aimAt(event.clientX, event.clientY, heroBadge.getBoundingClientRect(), true);
+    }, { passive: true });
+    ['pointerup', 'pointercancel', 'lostpointercapture'].forEach(type => {
+      heroBadge.addEventListener(type, () => {
+        if (!fingerIsMovingBadge) return;
+        fingerIsMovingBadge = false;
+        neutral();
+      }, { passive: true });
+    });
+
+    if ('IntersectionObserver' in window) {
+      const observeHero = new IntersectionObserver(entries => {
+        isVisible = entries.some(entry => entry.isIntersecting);
+        if (!isVisible) neutral();
+      }, { threshold: 0 });
+      observeHero.observe(heroPanel);
+    }
+    window.addEventListener('blur', neutral);
+    if (reduceMotion.addEventListener) {
+      reduceMotion.addEventListener('change', () => {
+        if (reduceMotion.matches) {
+          target.fill(0);
+          current.fill(0);
+          if (raf) window.cancelAnimationFrame(raf);
+          raf = 0;
+          heroBadgeScene.style.removeProperty('--logo-rotate-x');
+          heroBadgeScene.style.removeProperty('--logo-rotate-y');
+          heroBadgeScene.style.removeProperty('--logo-shift-x');
+          heroBadgeScene.style.removeProperty('--logo-shift-y');
+        } else queue();
+      });
+    }
+  }
+
   const menu = document.getElementById('menuButton');
   const nav = document.getElementById('siteNav');
 
