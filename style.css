@@ -1006,51 +1006,155 @@ img{display:block;max-width:100%}
 
 
 
-/* Tuning: true before/after engine image, hosted locally (no hotlink blocks). */
+/* Tuning / interaktiver Vorher-Nachher-Regler.
+   Bilder bleiben deckungsgleich und werden nur beschnitten, nicht gestreckt. */
 #tuning .tuning-comparison {
   position: relative;
-  min-height: 0;
-  aspect-ratio: 1.55;
-  overflow: hidden;
-  display: grid;
-  place-items: center;
-  border: 1px solid rgba(200,168,110,.26);
-  border-radius: 14px;
-  background: #111315;
-  box-shadow: 0 20px 48px rgba(0,0,0,.27);
-}
-#tuning .tuning-comparison::before {
-  content: "";
-  position: absolute;
-  inset: -30px;
-  z-index: 0;
-  background: url("assets/tuning-vorher-nachher.webp") center / cover no-repeat;
-  filter: blur(29px) brightness(.3) saturate(.7);
-  transform: scale(1.13);
-  pointer-events: none;
-}
-#tuning .tuning-comparison img {
-  position: relative;
-  z-index: 1;
   display: block;
   width: 100%;
-  height: auto;
-  max-height: 100%;
-  object-fit: contain;
+  min-width: 0;
+  min-height: 0;
+  aspect-ratio: auto;
+  overflow: visible;
+  padding: 0;
+  margin: 0;
+  border: 0;
+  border-radius: 0;
+  background: transparent;
+  box-shadow: none;
+}
+#tuning .engine-compare {
+  --compare-position: 50%;
+  position: relative;
+  display: block;
+  width: 100%;
+  aspect-ratio: 788 / 381;
+  overflow: hidden;
+  isolation: isolate;
+  border: 1px solid rgba(200,168,110,.44);
+  border-radius: 14px;
+  background: #14171a;
+  box-shadow: 0 25px 65px rgba(0,0,0,.40), 0 1px 0 rgba(255,255,255,.035) inset;
+  touch-action: none;
+  user-select: none;
+  -webkit-user-select: none;
+}
+#tuning .engine-compare .engine-compare-photo {
+  position: absolute;
+  inset: 0;
+  display: block;
+  width: 100%;
+  height: 100%;
+  max-height: none;
+  object-fit: cover;
+  object-position: center center;
+  border: 0;
+  padding: 0;
+  margin: 0;
+  box-shadow: none;
   filter: none;
-  transform: none;
-  transition: none;
-  box-shadow: 0 8px 32px rgba(0,0,0,.2);
+  transform: none !important;
+  transition: none !important;
+  pointer-events: none;
+  -webkit-user-drag: none;
 }
-#tuning .tuning-comparison:hover img { transform: none; }
-@media(max-width:760px) {
-  #tuning .tuning-comparison { aspect-ratio: 1.7; width: 100%; min-height: 0; }
+#tuning .engine-compare .engine-compare-after { z-index: 1; }
+#tuning .engine-compare .engine-compare-before {
+  z-index: 2;
+  clip-path: inset(0 calc(100% - var(--compare-position)) 0 0);
+  -webkit-clip-path: inset(0 calc(100% - var(--compare-position)) 0 0);
 }
-@media(max-width:450px) {
-  #tuning .tuning-comparison { aspect-ratio: 1.75; }
+#tuning .engine-compare-badge {
+  position: absolute;
+  top: 14px;
+  z-index: 3;
+  display: inline-block;
+  padding: 9px 12px;
+  border: 1px solid rgba(255,255,255,.25);
+  border-radius: 6px;
+  background: rgba(10,11,13,.76);
+  -webkit-backdrop-filter: blur(9px);
+  backdrop-filter: blur(9px);
+  color: #f5f5f5;
+  font: 750 10px/1 "DM Sans", Arial, sans-serif;
+  letter-spacing: .13em;
+  pointer-events: none;
 }
-
-
+#tuning .engine-compare-badge-before { left: 14px; }
+#tuning .engine-compare-badge-after { right: 14px; color: #e7c88e; }
+#tuning .engine-compare-divider {
+  position: absolute;
+  z-index: 4;
+  left: var(--compare-position);
+  top: 0;
+  bottom: 0;
+  width: 3px;
+  transform: translateX(-50%);
+  background: #fff;
+  box-shadow: 0 0 12px rgba(0,0,0,.4);
+  pointer-events: none;
+}
+#tuning .engine-compare-knob {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: space-evenly;
+  width: 62px;
+  height: 62px;
+  transform: translate(-50%,-50%);
+  background: #f6f6f6;
+  color: #171819;
+  border: 3px solid #fff;
+  border-radius: 50%;
+  box-shadow: 0 10px 28px rgba(0,0,0,.42),0 0 0 5px rgba(12,12,12,.18);
+  font: 800 31px/1 "DM Sans", Arial, sans-serif;
+}
+#tuning .engine-compare-knob span { position: relative; top: -2px; }
+#tuning .engine-compare-range {
+  -webkit-appearance: none;
+  appearance: none;
+  position: absolute;
+  inset: 0;
+  z-index: 5;
+  width: 100%;
+  height: 100%;
+  padding: 0;
+  margin: 0;
+  opacity: 0;
+  cursor: ew-resize;
+  touch-action: none;
+  background: transparent;
+}
+#tuning .engine-compare:focus-within .engine-compare-knob {
+  outline: 3px solid #d7b779;
+  outline-offset: 6px;
+}
+#tuning .engine-compare-caption {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: 10px;
+  margin: 13px 2px 0;
+  color: #aaafb1;
+  font: 700 10px/1.5 "DM Sans", Arial, sans-serif;
+  letter-spacing: .105em;
+}
+#tuning .engine-compare-caption span:last-child { color: #c8a86e; }
+@media (max-width: 760px) {
+  #tuning .engine-compare { aspect-ratio: 16 / 10; border-radius: 10px; }
+  #tuning .engine-compare-knob { width: 54px; height: 54px; font-size: 26px; }
+}
+@media (max-width: 450px) {
+  #tuning .engine-compare { aspect-ratio: 16 / 11; }
+  #tuning .engine-compare-knob { width: 48px; height: 48px; font-size: 23px; }
+  #tuning .engine-compare-badge { top: 10px; padding: 8px 10px; font-size: 9px; }
+  #tuning .engine-compare-badge-before { left: 10px; }
+  #tuning .engine-compare-badge-after { right: 10px; }
+  #tuning .engine-compare-caption { font-size: 9px; letter-spacing: .04em; }
+}
 
 /* ECU video player — sound-enabled on user click, native playback controls. */
 #ecu .ecu-video-feature {

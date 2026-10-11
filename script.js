@@ -289,6 +289,45 @@
   }
 
 
+  // Tuning: zugänglicher Vorher/Nachher-Schieberegler für Maus, Touch und Tastatur.
+  document.querySelectorAll('.engine-compare').forEach(compare => {
+    const slider = compare.querySelector('.engine-compare-range');
+    if (!slider) return;
+
+    const render = value => {
+      const amount = Math.max(0, Math.min(100, Number(value) || 0));
+      compare.style.setProperty('--compare-position', amount + '%');
+      slider.value = String(Math.round(amount));
+      slider.setAttribute('aria-valuetext', Math.round(amount) + ' Prozent Vorher sichtbar');
+    };
+    const updateFromPointer = clientX => {
+      const bounds = compare.getBoundingClientRect();
+      if (bounds.width > 0) {
+        render((clientX - bounds.left) / bounds.width * 100);
+      }
+    };
+
+    slider.addEventListener('input', () => render(slider.value));
+    let dragging = false;
+    compare.addEventListener('pointerdown', event => {
+      if (event.pointerType === 'mouse' && event.button !== 0) return;
+      dragging = true;
+      if (slider.setPointerCapture) {
+        try { slider.setPointerCapture(event.pointerId); } catch (_) {}
+      }
+      updateFromPointer(event.clientX);
+    });
+    compare.addEventListener('pointermove', event => {
+      if (dragging) updateFromPointer(event.clientX);
+    });
+    const endDrag = () => { dragging = false; };
+    compare.addEventListener('pointerup', endDrag);
+    compare.addEventListener('pointercancel', endDrag);
+    compare.addEventListener('lostpointercapture', endDrag);
+
+    render(slider.value);
+  });
+
   // Section-aware navigation.
   const sections = [...document.querySelectorAll('main section[id]')];
   if ('IntersectionObserver' in window && nav) {
