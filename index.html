@@ -10,12 +10,30 @@
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&family=Oswald:wght@400;500;600;700&display=swap" rel="stylesheet">
-  <link rel="stylesheet" href="style.css?v=transparent-hero-header-20261011-1">
+  <link rel="stylesheet" href="style.css?v=hero-floating-nav-no-bar-20261011-1">
   <style id="sp-gold-header-line">
     /* Fix: Headerlinie immer in Street-Performance-Gold, auch bei altem CSS im Cache. */
     .site-header::before {
       background: linear-gradient(90deg, #b69556 0%, #e8cc90 48%, #c8a86e 100%) !important;
       background-color: #c8a86e !important;
+    }
+  </style>
+  <style id="sp-floating-nav-override">
+    /* Sicherheit gegen veraltete Carbon-Header-Regeln: oben kein Balken. */
+    body > header.site-header { position:fixed; top:0; left:0; right:0; margin:0; z-index:1000; }
+    body > header.site-header:not(.is-scrolled) {
+      background:none !important;
+      background-image:none !important;
+      background-color:transparent !important;
+      border-bottom:0 !important;
+      box-shadow:none !important;
+      backdrop-filter:none !important;
+      -webkit-backdrop-filter:none !important;
+    }
+    body > header.site-header:not(.is-scrolled)::before,
+    body > header.site-header:not(.is-scrolled)::after {
+      opacity:0 !important;
+      visibility:hidden !important;
     }
   </style>
 </head>
@@ -401,6 +419,6 @@
     </div>
     <div class="layout footer-bottom"><span>© Real Street Performance GmbH. Alle Rechte vorbehalten.</span><a href="#top">Nach oben ↑</a></div>
   </footer>
-  <script src="script.js?v=glass-header-scroll-20261011-1" defer></script>
+  <script src="script.js?v=hero-floating-nav-no-bar-20261011-1" defer></script>
 </body>
 </html>
