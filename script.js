@@ -435,20 +435,15 @@
   });
 
 
-  // The navigation floats without any bar while the hero is still underneath.
-  // Only after the whole hero has passed the fixed header do we show carbon.
+  // Oben frei schwebende Navigation; unmittelbar beim Scrollen
+  // erscheint die halbtransparente, unscharfe Anthrazit-Glasleiste.
   const stickyHeader = document.querySelector('header.site-header');
-  const heroSection = document.querySelector('main > section#top.intro-banner.hero-split');
   if (stickyHeader) {
     const updateHeaderAppearance = () => {
-      const heroStillUnderHeader = heroSection
-        ? heroSection.getBoundingClientRect().bottom > stickyHeader.getBoundingClientRect().bottom
-        : window.scrollY < window.innerHeight * 0.75;
-      stickyHeader.classList.toggle('is-scrolled', !heroStillUnderHeader);
+      stickyHeader.classList.toggle('is-scrolled', window.scrollY > 4);
     };
     updateHeaderAppearance();
     window.addEventListener('scroll', updateHeaderAppearance, { passive: true });
-    window.addEventListener('resize', updateHeaderAppearance, { passive: true });
     window.addEventListener('pageshow', updateHeaderAppearance);
   }
 
