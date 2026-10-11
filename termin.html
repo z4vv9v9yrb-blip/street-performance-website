@@ -130,6 +130,59 @@
     }
     .field textarea::placeholder{color:#86888b}
     .field input::placeholder{color:#929494}
+
+    /* Goldene Serviceauswahl im Terminkontaktformular */
+    #serviceSelection[hidden]{display:none!important}
+    .service-picker{border:0;padding:0;margin:0;min-width:0}
+    .service-picker legend{padding:0;margin:0 0 7px;font-size:16px;font-weight:750;line-height:1.4;color:#ededee}
+    .service-picker-hint{color:#b9bcbe;font-size:12px;line-height:1.6;margin:0 0 13px}
+    .service-picker-options{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:10px}
+    .service-option{position:relative;display:block;min-width:0;cursor:pointer}
+    .service-option input{position:absolute;opacity:0;width:1px;height:1px}
+    .service-option-body{
+      position:relative;display:flex;flex-direction:column;justify-content:center;
+      align-items:flex-start;gap:10px;min-height:120px;height:100%;padding:14px 12px;
+      border:1px solid rgba(200,168,110,.25);border-radius:14px;
+      color:#f4f4f4;background:rgba(11,14,15,.54);
+      transition:border-color .25s ease,background .25s ease,box-shadow .25s ease
+    }
+    .service-option-icon{display:grid;place-items:center;width:34px;height:34px;color:#d1b47d}
+    .service-option-icon svg{display:block;width:100%;height:100%;overflow:visible}
+    .service-option-label{color:#f3f3f3;font-size:12px;font-weight:750;line-height:1.4;padding-right:10px}
+    .service-option-check{
+      position:absolute;top:10px;right:10px;display:grid;place-items:center;
+      width:19px;height:19px;border-radius:50%;background:rgba(200,168,110,.12);
+      color:#d1b47d;opacity:.38;font-size:12px;font-weight:800
+    }
+    .service-option:hover .service-option-body{border-color:rgba(200,168,110,.6);background:rgba(33,30,23,.64)}
+    .service-option input:checked+.service-option-body{
+      background:linear-gradient(135deg,rgba(200,168,110,.20),rgba(22,22,21,.85));
+      border-color:#c8a86e;box-shadow:inset 0 1px 0 rgba(255,255,255,.07)
+    }
+    .service-option input:checked+.service-option-body .service-option-check{opacity:1;color:#151514;background:#c8a86e}
+    .service-option input:focus-visible+.service-option-body{outline:2px solid #e8cc90;outline-offset:3px}
+    @media(max-width:1050px){
+      .service-picker-options{grid-template-columns:1fr}
+      .service-option-body{min-height:58px;flex-direction:row;align-items:center;justify-content:flex-start;gap:14px;padding:10px 13px}
+      .service-option-icon{flex:0 0 31px;width:31px;height:31px}
+      .service-option-label{font-size:13px}
+      .service-option-check{position:static;margin-left:auto}
+    }
+    @media(max-width:760px){
+      .service-picker legend{font-size:14px}
+      .service-picker-options{grid-template-columns:repeat(3,minmax(0,1fr))}
+      .service-option-body{min-height:108px;flex-direction:column;align-items:flex-start;justify-content:center;gap:8px;padding:12px 10px}
+      .service-option-icon{flex:0 0 31px;width:31px;height:31px}
+      .service-option-label{font-size:11px}
+      .service-option-check{position:absolute;top:9px;right:9px;margin:0}
+    }
+    @media(max-width:480px){
+      .service-picker-options{grid-template-columns:1fr}
+      .service-option-body{min-height:58px;flex-direction:row;align-items:center;justify-content:flex-start;gap:13px;padding:9px 13px}
+      .service-option-label{font-size:13px}
+      .service-option-check{position:static;margin-left:auto}
+    }
+    @media(prefers-reduced-motion:reduce){.service-option-body{transition:none}}
     .send-button{
       border:0;background:var(--red);color:white;
       min-height:74px;border-radius:100px;
@@ -284,6 +337,30 @@
             <label for="email">E-Mail</label>
             <input type="email" id="email" name="email" autocomplete="email" required maxlength="200">
           </div>
+          <fieldset class="service-picker" id="serviceSelection" hidden>
+            <legend>Welche Serviceleistung benötigst du?</legend>
+            <p class="service-picker-hint">Du kannst auch mehrere Leistungen auswählen. Sie werden automatisch in deine Nachricht übernommen.</p>
+            <div class="service-picker-options">
+              <label class="service-option"><input type="checkbox" value="motor"><span class="service-option-body"><span class="service-option-icon" aria-hidden="true"><svg viewBox="0 0 64 64" focusable="false" aria-hidden="true" fill="none" stroke="currentColor" stroke-width="2.3" stroke-linecap="round" stroke-linejoin="round">
+  <path d="M22 9h20v7H22zM25 5v4m7-4v4m7-4v4M21 16l-7 7-6-3-5 10 9 7 5-3 7 19h17l7-19 5 3 8-9-7-8-7 4-6-8"/>
+  <path d="M17 34l6-8 16-2 9 10M23 51l-3-15 5-10m17 25 2-14-5-13"/>
+  <circle cx="25" cy="33" r="6"/><circle cx="39" cy="35" r="9"/><circle cx="25" cy="46" r="4"/>
+  <path d="M28 29l4-2 4 2m-8 8 2 3h3m5-12 1 7-4 6-7 5"/>
+</svg></span><span class="service-option-label">Motor &amp; Ölservice</span><span class="service-option-check" aria-hidden="true">✓</span></span></label>
+              <label class="service-option"><input type="checkbox" value="bremsen"><span class="service-option-body"><span class="service-option-icon" aria-hidden="true"><svg viewBox="0 0 64 64" focusable="false" aria-hidden="true" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round">
+  <circle cx="29" cy="32" r="23"/><circle cx="29" cy="32" r="14"/><circle cx="29" cy="32" r="5"/>
+  <circle cx="29" cy="22" r="2.1"/><circle cx="39" cy="32" r="2.1"/><circle cx="29" cy="42" r="2.1"/><circle cx="19" cy="32" r="2.1"/>
+  <path d="M47 15a23 23 0 0 1 6 28l-7-7 1-11z" fill="currentColor" stroke="none"/>
+  <path d="M14 14a25 25 0 0 1 27-3m9 36a25 25 0 0 1-35 5"/>
+</svg></span><span class="service-option-label">Bremsen</span><span class="service-option-check" aria-hidden="true">✓</span></span></label>
+              <label class="service-option"><input type="checkbox" value="fahrwerk"><span class="service-option-body"><span class="service-option-icon" aria-hidden="true"><svg viewBox="0 0 64 64" focusable="false" aria-hidden="true" fill="none" stroke="currentColor" stroke-width="2.3" stroke-linecap="round" stroke-linejoin="round">
+  <path d="M10 7h16M12 12h12M18 12v8M10 20l16 3-16 4 16 4-16 4 16 4-16 4 16 4-16 3M18 50v7M8 57h20"/>
+  <path d="M32 15h22v42H32zM37 15v42m6-42v42m5-42v42"/>
+  <path d="M33 19l4-2m-4 10 4-2m-4 10 4-2m-4 10 4-2m-4 10 4-2M43 20l5 3m-5 5 5 3m-5 5 5 3m-5 5 5 3m-5 5 5 3"/>
+</svg></span><span class="service-option-label">Fahrwerk</span><span class="service-option-check" aria-hidden="true">✓</span></span></label>
+            </div>
+            <input type="hidden" name="serviceLeistungen" id="serviceLeistungen" disabled>
+          </fieldset>
           <div class="field">
             <label for="message">Nachricht</label>
             <textarea id="message" name="message" placeholder="Ich interessiere mich für einen Termin / eine Beratung ..." required maxlength="5000"></textarea>
@@ -334,13 +411,58 @@
       const selectedTemplate = Object.prototype.hasOwnProperty.call(inquiryTemplates, requestedInquiry)
         ? inquiryTemplates[requestedInquiry]
         : null;
+      const messageField = form.elements.namedItem("message");
+      const subjectField = form.elements.namedItem("_subject");
       if (selectedTemplate) {
-        const messageField = form.elements.namedItem("message");
-        const subjectField = form.elements.namedItem("_subject");
-        if (messageField && !messageField.value.trim()) {
-          messageField.value = selectedTemplate.message;
-        }
+        if (messageField && !messageField.value.trim()) messageField.value = selectedTemplate.message;
         if (subjectField) subjectField.value = selectedTemplate.subject;
+      }
+
+      // Bei Service-Anfragen zusätzliche Optionen einblenden und in der Mail angeben.
+      const serviceSelection = document.getElementById("serviceSelection");
+      const serviceValue = document.getElementById("serviceLeistungen");
+      if (requestedInquiry === "service" && serviceSelection && serviceValue && messageField) {
+        serviceSelection.hidden = false;
+        serviceValue.disabled = false;
+        const labels = { motor: "Motor & Ölservice", bremsen: "Bremsen", fahrwerk: "Fahrwerk" };
+        const boxes = [...serviceSelection.querySelectorAll('input[type="checkbox"]')];
+        let previousTemplate = selectedTemplate.message;
+
+        function fillServiceMessage() {
+          const selected = boxes.filter(box => box.checked).map(box => labels[box.value]);
+          serviceValue.value = selected.join(", ");
+          const message = selected.length
+            ? "Guten Tag,\n\nich möchte gerne einen Termin für folgende Serviceleistung(en) vereinbaren:\n"
+              + selected.map(label => "• " + label).join("\n")
+              + "\n\nBitte kontaktieren Sie mich für die weiteren Details.\n\nFreundliche Grüsse"
+            : selectedTemplate.message;
+          if (subjectField) subjectField.value = selected.length
+            ? "Service-Anfrage: " + selected.join(", ") + " – Street Performance"
+            : selectedTemplate.subject;
+          const existing = messageField.value;
+          if (!existing.trim() || existing === previousTemplate) {
+            messageField.value = message;
+          } else if (existing.startsWith(previousTemplate)) {
+            messageField.value = message + existing.slice(previousTemplate.length);
+          } else {
+            // Freie Änderungen im Nachrichtenfeld nicht überschreiben.
+            const selectionLine = /^Gewünschte Leistungen: .*$/m;
+            if (selectionLine.test(existing)) {
+              messageField.value = selected.length
+                ? existing.replace(selectionLine, "Gewünschte Leistungen: " + selected.join(", "))
+                : existing.replace(selectionLine, "").replace(/\n{3,}/g, "\n\n");
+            } else if (selected.length) {
+              messageField.value = "Gewünschte Leistungen: " + selected.join(", ") + "\n\n" + existing;
+            }
+          }
+          previousTemplate = message;
+        }
+
+        const preselected = new URLSearchParams(window.location.search).get("leistung");
+        const initialBox = boxes.find(box => box.value === preselected);
+        if (initialBox) initialBox.checked = true;
+        boxes.forEach(box => box.addEventListener("change", fillServiceMessage));
+        fillServiceMessage();
       }
 
 
