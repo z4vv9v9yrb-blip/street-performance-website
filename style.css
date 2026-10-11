@@ -2756,91 +2756,83 @@ img{display:block;max-width:100%}
 }
 
 
-/* NAVIGATION ÜBER DEM HERO – am Seitenanfang kein eigener Balken.
-   Header bleibt sticky; per negativem Aussenabstand beginnt das Hero-Bild
-   direkt dahinter. Die Hero-Inhalte behalten ihren bisherigen Abstand.
-   Beim Scrollen schaltet das vorhandene JS .is-scrolled zu und zeigt wieder
-   die matte, transparente Carbon-Leiste mit Blur. */
+/* FLOATING NAVIGATION — der gesamte Hero bleibt ohne Carbonbalken.
+   Genau ein Header-Zustandswechsel, erst wenn die Hero-Sektion endet.
+   Logo, Nav und Termin-CTA schweben über dem Hintergrund.
+   Im gescrollten Zustand: matte Carbonfasern + Backdrop-Blur. */
 :root { --sp-header-overlay-height: 106px; }
-.site-header {
-  margin-bottom: calc(-1 * var(--sp-header-overlay-height));
+html body > header.site-header {
+  position: fixed;
+  inset: 0 0 auto 0;
+  width: 100%;
+  margin: 0;
+  z-index: 1000;
+  transition:
+    background-color .34s ease,
+    border-color .34s ease,
+    box-shadow .34s ease,
+    -webkit-backdrop-filter .34s ease,
+    backdrop-filter .34s ease;
 }
-#top.intro-banner.hero-split {
+/* Default: keinerlei Fläche, Muster, Schatten oder Goldlinie. */
+html body > header.site-header:not(.is-scrolled) {
+  background: transparent !important;
+  background-color: transparent !important;
+  background-image: none !important;
+  border: 0 !important;
+  box-shadow: none !important;
+  -webkit-backdrop-filter: none !important;
+  backdrop-filter: none !important;
+}
+html body > header.site-header:not(.is-scrolled)::before,
+html body > header.site-header:not(.is-scrolled)::after {
+  opacity: 0 !important;
+  visibility: hidden !important;
+  background: none !important;
+}
+html body > header.site-header:not(.is-scrolled) .main-nav a,
+html body > header.site-header:not(.is-scrolled) .site-wordmark {
+  text-shadow: 0 2px 12px rgba(0,0,0,.55);
+}
+/* Hero beginnt tatsächlich am oberen Fensterrand;
+   die Texte bleiben mit Abstand unter der schwebenden Navigation. */
+html body main > section#top.intro-banner.hero-split {
   padding-top: var(--sp-header-overlay-height);
 }
-.site-header:not(.is-scrolled) {
-  background: transparent;
-  background-color: transparent;
-  background-image: none;
-  border-bottom-color: transparent;
-  box-shadow: none;
-  -webkit-backdrop-filter: none;
-  backdrop-filter: none;
+/* Nach dem Hero: sichtbar bleibende matte Carbon-Navigation. */
+html body > header.site-header.is-scrolled {
+  background-color: rgba(7,10,12,.76);
+  background-image:
+    linear-gradient(100deg,rgba(5,7,9,.28),rgba(13,15,18,.19) 55%,rgba(4,6,8,.31)),
+    url("assets/sp-carbon-weave.svg?v=matte-twill-20261011-2");
+  background-position: center,center;
+  background-repeat: no-repeat,repeat;
+  background-size: cover,24px 24px;
+  -webkit-backdrop-filter: blur(22px) saturate(120%);
+  backdrop-filter: blur(22px) saturate(120%);
+  border-bottom: 1px solid rgba(200,168,110,.20);
+  box-shadow: 0 10px 29px rgba(0,0,0,.26);
 }
-.site-header:not(.is-scrolled)::after {
-  background: none;
-  opacity: 0;
-}
-.site-header:not(.is-scrolled) .main-nav a,
-.site-header:not(.is-scrolled) .site-wordmark {
-  text-shadow: 0 2px 12px rgba(0,0,0,.58);
+html body > header.site-header.is-scrolled::before,
+html body > header.site-header.is-scrolled::after {
+  visibility: visible;
+  opacity: 1;
 }
 @media (min-width: 761px) and (max-width: 1080px) {
   :root { --sp-header-overlay-height: 88px; }
 }
 @media (max-width: 760px) {
   :root { --sp-header-overlay-height: 75px; }
-  /* Das mobile Dropdown hat weiterhin seinen eigenen dunklen Hintergrund. */
-  .site-header:not(.is-scrolled) .main-nav {
-    text-shadow: none;
+  /* Menü-Overlay bleibt auch über transparentem Hero kontrastreich. */
+  html body > header.site-header .main-nav.open {
+    background: linear-gradient(180deg,rgba(29,32,35,.985),rgba(16,18,20,.985));
+  }
+  html body > header.site-header.is-scrolled {
+    background-color: rgba(7,10,12,.79);
+    -webkit-backdrop-filter: blur(19px) saturate(116%);
+    backdrop-filter: blur(19px) saturate(116%);
   }
 }
-
-
-/* ENDGÜLTIG: Am Start überhaupt KEIN Header-Balken.
-   Die Navigation liegt fest über dem Hero. Erst nachdem die Startseite
-   deutlich gescrollt wurde, erscheint der matte Carbon-Glass-Hintergrund. */
-html body > header.site-header {
-  position: fixed;
-  inset: 0 0 auto;
-  width: 100%;
-  margin: 0;
-  z-index: 1000;
-}
-html body > header.site-header:not(.is-scrolled) {
-  background: none;
-  background-image: none;
-  background-color: transparent;
-  border: 0;
-  box-shadow: none;
-  -webkit-backdrop-filter: none;
-  backdrop-filter: none;
-}
-html body > header.site-header:not(.is-scrolled)::before,
-html body > header.site-header:not(.is-scrolled)::after {
-  opacity: 0;
-  visibility: hidden;
-}
-/* Weil der Header jetzt fixed ist, beginnt der Hero ab Pixel 0.
-   Sein Inhalt wird darunter mit ausreichend Luft positioniert. */
-html body #top.intro-banner.hero-split {
-  padding-top: var(--sp-header-overlay-height, 106px);
-}
-html body > header.site-header.is-scrolled {
-  background-color: rgba(7,10,12,.76);
-  background-image:
-    linear-gradient(100deg,rgba(5,7,9,.28),rgba(13,15,18,.19) 55%,rgba(4,6,8,.31)),
-    url("assets/sp-carbon-weave.svg?v=matte-twill-20261011-2");
-  background-size: cover,24px 24px;
-  background-repeat: no-repeat,repeat;
-  background-position: center,center;
-  -webkit-backdrop-filter: blur(22px) saturate(120%);
-  backdrop-filter: blur(22px) saturate(120%);
-  border-bottom: 1px solid rgba(200,168,110,.2);
-  box-shadow: 0 10px 29px rgba(0,0,0,.26);
-}
-@media (max-width:760px) {
-  html body > header.site-header:not(.is-scrolled) .main-nav.open {
-    background: linear-gradient(180deg,rgba(29,32,35,.98),rgba(16,18,20,.98));
-  }
+@media (prefers-reduced-motion: reduce) {
+  html body > header.site-header { transition: none; }
 }
