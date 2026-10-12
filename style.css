@@ -3032,3 +3032,181 @@ html body > header.site-header::before {
 @media (prefers-reduced-motion: reduce) {
   .site-header .main-nav .nav-icon { transition: none; }
 }
+
+
+/* SP PREMIUM MARKEN-GALERIE (2026): Carbon-black glass, gold, seamless marquee */
+#tuning .brands-premium {
+  position:relative;isolation:isolate;overflow:hidden;
+  margin-top:clamp(62px,7vw,105px);padding:clamp(26px,4vw,52px) 0 22px;
+  border:1px solid rgba(196,165,108,.22);border-radius:clamp(16px,2vw,24px);
+  text-align:left;
+  background:radial-gradient(ellipse 52% 105% at 91% -18%,rgba(208,167,100,.115),transparent 76%),
+             radial-gradient(ellipse 62% 110% at -19% 109%,rgba(77,81,91,.18),transparent 80%),
+             linear-gradient(125deg,#111315,#0a0b0d 52%,#101114);
+  box-shadow:0 24px 80px rgba(0,0,0,.18),inset 0 1px 0 rgba(255,255,255,.045)
+}
+#tuning .brands-premium::before {
+  content:"";position:absolute;inset:0;z-index:-1;pointer-events:none;
+  background-image:linear-gradient(rgba(226,202,165,.025) 1px,transparent 1px),
+                   linear-gradient(90deg,rgba(226,202,165,.025) 1px,transparent 1px);
+  background-size:50px 50px;
+  -webkit-mask-image:linear-gradient(110deg,transparent 15%,rgba(0,0,0,.7) 84%);
+  mask-image:linear-gradient(110deg,transparent 15%,rgba(0,0,0,.7) 84%)
+}
+#tuning .brands-premium::after {
+  content:"";position:absolute;top:0;left:5%;width:36%;height:1px;pointer-events:none;
+  background:linear-gradient(90deg,transparent,rgba(232,205,155,.75),transparent);
+  box-shadow:0 0 22px rgba(230,194,126,.29)
+}
+#tuning .brands-premium > .brands-head {
+  position:relative;z-index:1;display:flex;align-items:flex-end;justify-content:space-between;
+  gap:22px;flex-wrap:nowrap;margin:0;padding:0 clamp(24px,4.2vw,62px)
+}
+#tuning .brands-heading-copy{min-width:0}
+#tuning .brands-eyebrow {
+  display:inline-flex;align-items:center;gap:12px;color:#d9b881;
+  font:700 10px/1.4 "DM Sans",Arial,sans-serif;letter-spacing:.22em;text-transform:uppercase
+}
+#tuning .brands-eyebrow-diamond {
+  width:9px;height:9px;flex:0 0 9px;border:1px solid #dbb87e;
+  transform:rotate(45deg);box-shadow:0 0 15px rgba(212,169,98,.25)
+}
+#tuning .brands-head h3 {
+  margin:clamp(15px,2vw,23px) 0 12px;color:#f4f3f1;
+  font:600 clamp(30px,3.65vw,57px)/1.04 "Oswald","Arial Narrow",Arial,sans-serif;
+  letter-spacing:-.02em;text-transform:uppercase
+}
+#tuning .brands-head h3 em {
+  font-style:normal;color:#d3b47d;
+  background:linear-gradient(125deg,#f1d6a0,#b89255 72%,#e8cc90);
+  -webkit-background-clip:text;background-clip:text;-webkit-text-fill-color:transparent
+}
+#tuning .brands-head p {
+  max-width:510px;margin:0;color:#a8aaae;
+  font:400 clamp(12px,1.07vw,14px)/1.7 "DM Sans",Arial,sans-serif
+}
+#tuning .brands-count {
+  display:flex;align-items:center;gap:13px;flex:0 0 auto;padding:0 0 7px 22px;
+  border-left:1px solid rgba(210,178,122,.2)
+}
+#tuning .brands-count-value{
+  color:#e0c28f;font:500 clamp(43px,5vw,72px)/.95 "Oswald","Arial Narrow",Arial,sans-serif
+}
+#tuning .brands-count-caption{
+  color:#85888d;font:700 10px/1.7 "DM Sans",Arial,sans-serif;letter-spacing:.17em
+}
+#tuning .brands-premium > .brands-marquee {
+  --brand-card-width:clamp(232px,22vw,303px);
+  display:block;width:100%;overflow:hidden;flex-wrap:nowrap;
+  margin:clamp(24px,3.5vw,41px) 0 0;padding:14px 0 23px;isolation:isolate;
+  -webkit-mask-image:linear-gradient(90deg,transparent,#000 5%,#000 95%,transparent);
+  mask-image:linear-gradient(90deg,transparent,#000 5%,#000 95%,transparent)
+}
+#tuning .brands-premium .brands-track{
+  display:flex;width:max-content;align-items:stretch;gap:0;flex-wrap:nowrap;
+  animation:brands-infinite-scroll 38s linear infinite;will-change:transform
+}
+#tuning .brands-premium .brands-marquee:hover .brands-track{animation-play-state:paused}
+#tuning .brands-premium .brands-group{
+  display:flex;gap:13px;align-items:stretch;flex:0 0 auto;
+  width:max-content;padding-right:13px;white-space:normal
+}
+#tuning .brands-premium .brand-tile {
+  position:relative;display:flex;flex-direction:column;justify-content:space-between;
+  flex:0 0 var(--brand-card-width);width:var(--brand-card-width);
+  min-height:clamp(132px,11vw,154px);padding:18px 20px 17px;overflow:hidden;
+  border:1px solid rgba(207,212,217,.105);border-radius:13px;
+  background:linear-gradient(125deg,rgba(39,41,45,.82),rgba(17,19,22,.95) 55%,rgba(27,27,28,.97));
+  box-shadow:inset 0 1px 0 rgba(255,255,255,.055);
+  transition:border-color .32s,box-shadow .32s,transform .32s
+}
+#tuning .brands-premium .brand-tile::before{
+  content:"";position:absolute;top:-32px;right:-16px;width:110px;height:110px;
+  border-radius:50%;pointer-events:none;
+  background:radial-gradient(circle,rgba(204,161,91,.13),transparent 70%);
+  opacity:.46;transition:opacity .32s,transform .4s
+}
+#tuning .brands-premium .brand-tile::after{
+  content:"";position:absolute;inset:auto auto 0 20px;width:30%;height:1px;
+  pointer-events:none;background:linear-gradient(90deg,rgba(206,171,110,.9),transparent);
+  opacity:.50;transition:width .3s,opacity .3s
+}
+#tuning .brands-premium .brand-tile:hover{
+  border-color:rgba(215,178,111,.58);transform:translateY(-4px);
+  box-shadow:inset 0 1px 0 rgba(255,255,255,.07),0 13px 30px rgba(0,0,0,.22)
+}
+#tuning .brands-premium .brand-tile:hover::before{opacity:1;transform:scale(1.24)}
+#tuning .brands-premium .brand-tile:hover::after{width:55%;opacity:.9}
+#tuning .brands-premium .brand-tile-top{
+  display:flex;justify-content:space-between;align-items:flex-start;gap:12px
+}
+#tuning .brands-premium .brand-tile-number{
+  color:#bc9f6d;font:700 9px/1.4 "DM Sans",Arial,sans-serif;letter-spacing:.15em
+}
+#tuning .brands-premium .brand-tile-monogram{
+  display:grid;place-items:center;width:23px;height:23px;
+  border:1px solid rgba(207,175,117,.29);border-radius:5px;color:#cfb07b;
+  font:600 12px/1 "Oswald",Arial,sans-serif;transform:rotate(-5deg);opacity:.85
+}
+#tuning .brands-premium .brand-tile-name{
+  display:block;position:relative;z-index:1;margin:18px 0 6px;color:#f1f0ee;
+  font:600 clamp(20px,2.05vw,27px)/1.12 "Oswald","Arial Narrow",Arial,sans-serif;
+  letter-spacing:.01em;text-transform:uppercase;white-space:nowrap
+}
+#tuning .brands-premium .brand-tile-category{
+  position:relative;z-index:1;color:#919399;
+  font:700 9px/1.4 "DM Sans",Arial,sans-serif;letter-spacing:.19em;text-transform:uppercase
+}
+#tuning .brands-premium .brand-tile-gt1r .brand-tile-name{
+  font-size:clamp(28px,2.7vw,36px);letter-spacing:.06em
+}
+#tuning .brands-premium > .brands-foot{
+  display:flex;align-items:center;justify-content:space-between;flex-wrap:nowrap;
+  gap:18px;margin:0;padding:9px clamp(24px,4.2vw,62px) 0
+}
+#tuning .brands-foot-signal,#tuning .brands-foot-tag{
+  display:inline-flex;align-items:center;gap:10px;white-space:nowrap;
+  color:#7f8185;font:700 9px/1.4 "DM Sans",Arial,sans-serif;letter-spacing:.15em
+}
+#tuning .brands-foot-signal{color:#c9af80}
+#tuning .brands-foot-pulse{
+  width:6px;height:6px;flex:0 0 6px;border-radius:50%;
+  background:#d7bd8a;box-shadow:0 0 13px rgba(217,182,124,.58)
+}
+#tuning .brands-foot-rule{
+  flex:1;height:1px;background:linear-gradient(90deg,rgba(205,175,124,.29),rgba(205,175,124,.06))
+}
+#tuning .brands-foot-tag span{color:#b99763}
+@media(max-width:860px){
+  #tuning .brands-head h3{font-size:clamp(29px,4.6vw,44px)}
+  #tuning .brands-count-value{font-size:49px}
+}
+@media(max-width:690px){
+  #tuning .brands-premium{margin-top:48px;padding:25px 0 20px;border-radius:16px}
+  #tuning .brands-premium > .brands-head{padding:0 22px;gap:14px;align-items:start}
+  #tuning .brands-head h3{font-size:clamp(27px,7.6vw,42px);line-height:1.08;margin-top:14px}
+  #tuning .brands-head p{max-width:380px;font-size:12px;line-height:1.65}
+  #tuning .brands-eyebrow{font-size:9px;letter-spacing:.13em;gap:9px}
+  #tuning .brands-count{display:none}
+  #tuning .brands-premium > .brands-marquee{
+    --brand-card-width:clamp(219px,70vw,257px);margin-top:21px;padding:10px 0 17px;
+    -webkit-mask-image:linear-gradient(90deg,transparent,#000 7%,#000 93%,transparent);
+    mask-image:linear-gradient(90deg,transparent,#000 7%,#000 93%,transparent)
+  }
+  #tuning .brands-premium .brands-track{animation-duration:32s}
+  #tuning .brands-premium .brand-tile{min-height:129px;padding:15px 16px 14px}
+  #tuning .brands-premium .brand-tile-name{font-size:21px}
+  #tuning .brands-premium .brand-tile-gt1r .brand-tile-name{font-size:29px}
+  #tuning .brands-premium > .brands-foot{padding:8px 22px 0;gap:10px}
+  #tuning .brands-foot-signal,#tuning .brands-foot-tag{font-size:8px;letter-spacing:.095em}
+  #tuning .brands-foot-rule{display:none}
+}
+@media(max-width:380px){#tuning .brands-foot-tag{display:none}}
+@media(prefers-reduced-motion:reduce){
+  #tuning .brands-premium .brands-track{animation:none;transform:none;will-change:auto}
+  #tuning .brands-premium > .brands-marquee{
+    overflow-x:auto;scrollbar-width:thin;-webkit-mask-image:none;mask-image:none
+  }
+  #tuning .brands-premium .brands-group[aria-hidden="true"]{display:none}
+  #tuning .brands-premium .brand-tile{transition:none}
+}
