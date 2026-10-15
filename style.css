@@ -3210,3 +3210,133 @@ html body > header.site-header::before {
   #tuning .brands-premium .brands-group[aria-hidden="true"]{display:none}
   #tuning .brands-premium .brand-tile{transition:none}
 }
+
+
+/* STREET PERFORMANCE – identische Wortmarke wie auf der Terminseite.
+   Gerader Manrope-Schriftschnitt, volle Firmenbezeichnung und SP-Wappen.
+   Header, Footer und die mobil sichtbare Wortmarke bleiben echtes HTML. */
+.site-header .site-brand {
+  gap: 11px;
+  max-width: min(100%, 440px);
+}
+.site-header .site-wordmark,
+.footer-main .footer-wordmark {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  min-width: 0;
+  line-height: 1;
+  transform: none;
+  color: #fff;
+}
+.site-header .site-wordmark strong,
+.footer-main .footer-wordmark strong {
+  font-family: "Manrope", Arial, sans-serif;
+  font-weight: 800;
+  font-style: normal;
+  text-transform: uppercase;
+  letter-spacing: -.055em;
+  line-height: 1.08;
+  transform: none;
+  text-shadow: 0 2px 8px rgba(0,0,0,.23);
+  white-space: nowrap;
+}
+.site-header .site-wordmark strong {
+  font-size: clamp(22px, 1.78vw, 29px);
+}
+.site-header .site-wordmark small,
+.footer-main .footer-wordmark small {
+  display: block;
+  margin-top: 3px;
+  padding-left: 1px;
+  font-family: "DM Sans", Arial, sans-serif;
+  font-style: normal;
+  font-weight: 600;
+  letter-spacing: .20em;
+  line-height: 1.5;
+  color: #d0d0d2;
+  white-space: nowrap;
+}
+.site-header .site-wordmark small {
+  font-size: clamp(6px, .49vw, 8.5px);
+}
+/* Der Schriftzug benötigt etwas mehr Platz als das alte STREET-Logo.
+   Zentrierte Navigation und Termin-Button behalten ihre eigene Zone. */
+@media (min-width: 1081px) {
+  .site-header .header-inner.layout {
+    grid-template-columns: minmax(315px, 1fr) auto minmax(195px, 1fr);
+  }
+}
+@media (min-width: 1081px) and (max-width: 1300px) {
+  .site-header .site-wordmark strong { font-size: clamp(21px, 1.7vw, 23px); }
+  .site-header .site-wordmark small { font-size: 6px; letter-spacing: .12em; }
+  .site-header .site-brand { gap: 9px; }
+}
+/* Zwischen Tablet und Desktop hat das Menü Vorrang: Wappen bleibt sichtbar. */
+@media (min-width: 761px) and (max-width: 1080px) {
+  .site-header .site-wordmark { display: none; }
+}
+@media (max-width: 760px) {
+  .site-header .site-brand { gap: 6px; }
+  .site-header .site-wordmark { display: flex; }
+  .site-header .site-wordmark strong {
+    font-size: clamp(13px, 2.65vw, 20px);
+    letter-spacing: -.063em;
+  }
+  .site-header .site-wordmark small {
+    margin-top: 3px;
+    font-size: clamp(5.1px, .98vw, 7px);
+    letter-spacing: .09em;
+  }
+}
+@media (max-width: 520px) {
+  .site-header .site-brand { gap: 4px; }
+  .site-header .site-wordmark strong {
+    font-size: clamp(12.5px, 3.28vw, 17px);
+    letter-spacing: -.069em;
+  }
+  .site-header .site-wordmark small {
+    font-size: 5.2px;
+    letter-spacing: .045em;
+  }
+}
+@media (max-width: 420px) {
+  .site-header .site-wordmark small { display: none; }
+}
+@media (max-width: 360px) {
+  .site-header .site-wordmark strong {
+    font-size: clamp(11px, 3.6vw, 13px);
+    letter-spacing: -.08em;
+  }
+}
+/* Die Fusszeile trägt die gleiche, vollständige Marke. */
+.footer-main .site-brand {
+  display: inline-flex;
+  align-items: center;
+  gap: 11px;
+  width: auto;
+  min-width: 0;
+  text-decoration: none;
+}
+.footer-main .footer-wordmark strong {
+  font-size: clamp(20px, 2vw, 27px);
+}
+.footer-main .footer-wordmark small {
+  font-size: 7px;
+}
+@media (max-width: 520px) {
+  .footer-main .site-brand { gap: 8px; }
+  .footer-main .site-brand .sp-shield-logo {
+    flex-basis: 56px;
+    width: 56px;
+    min-width: 56px;
+    max-width: 56px;
+    height: 63px;
+  }
+  .footer-main .footer-wordmark strong { font-size: clamp(17px,5vw,22px); }
+  .footer-main .footer-wordmark small { font-size: 6px; letter-spacing: .09em; }
+}
+@media (max-width: 360px) {
+  .footer-main .footer-wordmark strong { font-size: 16px; }
+  .footer-main .footer-wordmark small { font-size: 5px; letter-spacing: .045em; }
+}
